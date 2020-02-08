@@ -6,21 +6,7 @@ import {
   GetCriterioCompensacion,
   ResetCompensacion
 } from '../../shared/store/actions/consultas/compensacion.actions';
-import { GetComisCompensacion } from '../../shared/store/actions/consultas/comis-compensacion.actions';
-import { GetAllMembresia } from '../../shared/store/actions/mantenimiento/membresia.actions';
-import { GetAllOrigen } from '../../shared/store/actions/mantenimiento/origen.actions';
-import { GetAllClaseTransaccion } from '../../shared/store/actions/mantenimiento/clase-transaccion.action';
-import { GetAllCodigoTransaccion } from '../../shared/store/actions/mantenimiento/codigo-transaccion.action';
-import { GetAllRolTransaccion } from '../../shared/store/actions/mantenimiento/rol-transaccion.actions';
-import { GetAllCanal } from '../../shared/store/actions/mantenimiento/canal.actions';
-import { GetAllServicio } from '../../shared/store/actions/mantenimiento/servicio.actions';
-import { GetAllInstitucion } from '../../shared/store/actions/mantenimiento/institucion.actions';
-import { GetAllBin } from '../../shared/store/actions/mantenimiento/bin.actions';
-import { GetAllCodigoRptaSwitch } from '../../shared/store/actions/mantenimiento/codigo-rpta-switch.actions';
-import { GetAllMoneda } from '../../shared/store/actions/mantenimiento/moneda.actions';
-import { GetAllOrigenArchivo } from '../../shared/store/actions/mantenimiento/origen-archivo.actions';
 import { CompensacionService } from '../service/compensacion.service';
-import { GetAllParametroRep } from '../../shared/store/actions/reportes/parametro-rep.actions';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -31,7 +17,7 @@ export class CompensacionFacade {
     private compensacionService: CompensacionService
   ) { }
 
-  buscarCriterios(criteriosReq: any, criteriosFilters: any) {
+  /*buscarCriterios(criteriosReq: any, criteriosFilters: any) {
     let criterio = {
       ...criteriosFilters,
       ...criteriosReq,
@@ -56,7 +42,7 @@ export class CompensacionFacade {
   }
 
   /* Para llenar los combos de la pagina del Log Contable*/
-  initData() {
+  /*initData() {
     this.store.dispatch(new GetAllParametroRep());
     this.store.dispatch(new GetAllMembresia());
     this.store.dispatch(new GetAllServicio());
@@ -83,5 +69,5 @@ export class CompensacionFacade {
 
   resetCompensacion() {
     this.store.dispatch(new ResetCompensacion());
-  }
+  }*/
 }

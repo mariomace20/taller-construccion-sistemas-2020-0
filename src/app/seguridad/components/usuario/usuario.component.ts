@@ -27,7 +27,7 @@ import { AppState } from "../../../shared/store/app.reducers";
 import { ErrorService } from "../../../shared/services/errors/error.service";
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { Usuario } from '../../../reportes/admin/models';
+//import { Usuario } from '../../../reportes/admin/models';
 import { GestionCuentaComponent } from './gestion-cuenta/gestion-cuenta.component';
 
 @Component({
@@ -88,7 +88,7 @@ export class UsuarioComponent implements OnInit, AfterViewInit, OnDestroy {
       },
       onGridReady: (params) => {
         this.gridApi = params.api;
-        this.gridColumnApi = params.columnApi;        
+        this.gridColumnApi = params.columnApi;
       }
     };
   }
@@ -201,7 +201,7 @@ export class UsuarioComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   showMdGestionCuenta(params){
-    let data: Usuario = params.data;
+    let data: any = params.data;
     this.gestionCuenta.show(data);
   }
 }

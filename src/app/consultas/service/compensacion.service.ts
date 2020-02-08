@@ -3,7 +3,7 @@ import { Injectable, Injector } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../shared/store/app.reducers';
 import { HttpClient } from '@angular/common/http';
-import { CriterioCompensacionRequest } from '../models/criterios/index'
+//import { CriterioCompensacionRequest } from '../models/criterios/index'
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -24,7 +24,7 @@ export class CompensacionService extends HttpService {
     this.path = path;
   }
 
-  buscarPorCriterios(criterio: CriterioCompensacionRequest): Observable<any> {
+  buscarPorCriterios(criterio: any): Observable<any> {
     super.setEndpoint(`${this.path}compensaciones/pagination`);
     let httpParams = super.getHttpParamsFromCriteria(criterio);
     return super.get('', httpParams);

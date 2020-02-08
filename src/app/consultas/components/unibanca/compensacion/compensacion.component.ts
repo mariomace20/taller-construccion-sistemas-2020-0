@@ -1,3 +1,20 @@
+import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
+
+@Component({
+  selector: 'app-compensacion',
+  templateUrl: './compensacion.component.html',
+  styleUrls: ['./compensacion.component.scss']
+})
+
+export class CompensacionComponent implements OnInit{
+  constructor(
+  ) {
+  }
+
+  ngOnInit() {
+  }
+}
+
 /*import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { TemplateConsultaComponent, ButtonsCellRendererComponent, ConsultaModalComponent } from '../../../../shared';
 import { ManagePagination, commontConfigTablaServerSideScroll, processingRangePagination, processingFiltersPagination, getDaysInRange, processingOrdersPagination, setStatePaginationFilters, setHiddenDefaultPaginationAggrid, PAGE, resetPagination, configAggridPagination, setStatePagination, isNecessaryNextPage, formatMoney, isNecessaryPreviousPage, setRowInPagination, Type, NEXT_PAGE, PREVIOUS_PAGE, TYPES, RESOURCE_ACTIONS, autoSizeColumns, getFormattedDate, commontConfigTablaInfiniteScroll, commonConfigTablaMantenimiento, getContextMenuItemsConsultas, joinWords, getDateRange, DEFAULT_SEPARATOR, BUSQUEDA_SIN_RESULTADOS, CUSTOM_MESSAGE_MAX_RANGE_EXCEDED, CUSTOM_MESSAGE_RESULT_NOT_FOUND, PARAMETROS_REPORTES, BUSQUEDA_INVALIDA, PAGE_SIZE_CONSULTAS, FIRST_PAGE, renderYesNoLabel, updateGrid, configFormMd, getFormattedDateRangePicker } from '../../../../shared/utils';

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, Input, AfterViewInit, OnDestroy } from '@angular/core';
 import { TemplateMantenimientoDetalleComponent } from '../../../../shared/components/template-mantenimiento-detalle/template-mantenimiento-detalle.component';
-import { Usuario } from '../../../../reportes/admin/models';
+//import { Usuario } from '../../../../reportes/admin/models';
 import { Type, commonConfigTablaMantenimiento, DEFAULT_SEPARATOR, joinWords, updateGrid, manageCrudDetailState, configFormMd, renderYesNoLabel, enableControls, resetForm, setValueControls, OB_VALIDATORS, RESOURCE_ACTIONS, filterObjArray } from '../../../../shared/utils';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { GridOptions, GridApi, ColDef } from 'ag-grid-community';
@@ -36,7 +36,7 @@ export class GestionCuentaComponent implements OnInit, AfterViewInit, OnDestroy 
   private gridColumnApi;
   templateHtmlMsg: string;
 
-  usuario: Usuario;
+  usuario: any;
   sistemas: Sistema[] = [];
   perfiles: Perfil[] = [];
 
@@ -48,7 +48,7 @@ export class GestionCuentaComponent implements OnInit, AfterViewInit, OnDestroy 
     private errorService: ErrorService) { }
 
   ngOnInit() {
-    this.templateHtmlMsg = `<p>¿Está seguro que desea eliminar el perfil <strong>[perfil]</strong> del usuario 
+    this.templateHtmlMsg = `<p>¿Está seguro que desea eliminar el perfil <strong>[perfil]</strong> del usuario
       <strong>[usuario]</strong> en el sistema <strong>[sistema]</strong>?</p>`;
     this.mdConfirmOpts = configFormMd.getDeleteMdOpts(this.templateHtmlMsg);
     this.form = new FormGroup({

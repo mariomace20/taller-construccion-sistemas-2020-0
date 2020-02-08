@@ -4,13 +4,13 @@ import { navItems } from '../../../../_nav';
 import { AppState } from '../../../store/app.reducers';
 import { Store } from '@ngrx/store';
 import { Logout } from '../../../store/actions/auth/auth.actions';
-import { NavData } from '../../../../reportes/user/components/sidebar-tablas/_sidebar';
+//import { NavData } from '../../../../reportes/user/components/sidebar-tablas/_sidebar';
 import { Router } from '@angular/router';
 import { SEC_AUTH, TYPES, RESOURCE_ACTIONS } from '../../../utils';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { PermissionsService } from '../../../services';
-import { GetAllParametroSistema } from '../../../store/actions/mantenimiento/parametro-sistema.actions';
+//import { GetAllParametroSistema } from '../../../store/actions/mantenimiento/parametro-sistema.actions';
 import { UpdatePage } from '../../../store/actions/help.actions';
 
 @Component({
@@ -32,7 +32,7 @@ export class LayoutComponent implements OnDestroy, OnInit, AfterViewInit {
 
   public nombreUsuario = '';
   public infoApp: any;
-  public allChildren: NavData[] = [];
+  //public allChildren: NavData[] = [];
   public childSelected;
   private ngUnsubscribe: Subject<void> = new Subject<void>();
   public permisoConsultaFechaProceso: boolean = false;
@@ -65,7 +65,7 @@ export class LayoutComponent implements OnDestroy, OnInit, AfterViewInit {
     this.store.select('globalData', 'infoApp').pipe(takeUntil(this.ngUnsubscribe)).subscribe(infoApp => this.infoApp = infoApp);
     this.store.select('auth', 'menuOptions').pipe(takeUntil(this.ngUnsubscribe)).subscribe(menuOptions => {
       this.navItems = this.auth ? menuOptions : navItems;
-      this.allChildren = this.getLastChildren(this.navItems);
+      //this.allChildren = this.getLastChildren(this.navItems);
     });
     this.store.select('auth', 'user').pipe(takeUntil(this.ngUnsubscribe)).subscribe(user => {
       this.nombreUsuario = user;
@@ -92,7 +92,7 @@ export class LayoutComponent implements OnDestroy, OnInit, AfterViewInit {
     this.router.navigate([data.url]);
   }
 
-  getLastChildren(navItems: NavData[]) {
+/*getLastChildren(navItems: NavData[]) {
     let items: NavData[] = [];
     for (let it of navItems) {
       this.getLastChild(it, items);
@@ -109,7 +109,7 @@ export class LayoutComponent implements OnDestroy, OnInit, AfterViewInit {
         this.getLastChild(child, children);
       }
     }
-  }
+  }*/
 
   redirectParametrosSistema() {
     window.open(`${window.location.pathname}#/mantenimiento/parametroSistema`, '_blank');
@@ -136,7 +136,7 @@ export class LayoutComponent implements OnDestroy, OnInit, AfterViewInit {
     this.permisoConsultaFechaProceso = this.permissionsService.hasPermission(
       this.permissionsService.getValidActions(TYPES.PARAMETRO_SISTEMA.resource), RESOURCE_ACTIONS.CONSULTA);
     if (this.permisoConsultaFechaProceso) {
-      this.store.dispatch(new GetAllParametroSistema());
+      //this.store.dispatch(new GetAllParametroSistema());
     }
     this.store.select('parametrosSistema').pipe(takeUntil(this.ngUnsubscribe)).subscribe(state => {
       setTimeout(() => {

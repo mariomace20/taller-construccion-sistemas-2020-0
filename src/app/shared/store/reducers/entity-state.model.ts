@@ -1,7 +1,4 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { TablaQuery, Filtro, CampoQuery } from '../../../reportes/user/models';
-import { CondicionQuery } from '../../../reportes/user/models/condicion.model';
-import { TablaOnJoin } from '../../../reportes/user/models/tabla-on-join';
 
 export interface State<T> {
   data: Array<T>,
@@ -31,28 +28,6 @@ export interface ComisCompensacionState<T> extends ConsultaState<T> {
 
 export interface DetalleConsultaState<T> extends ConsultaState<T> {
   currentDetails : boolean,
-}
-
-export interface ReporteAvanzadoState {
-  idReporte?:number,
-  nombre?: string,
-  descripcion?:string,
-  descCorta?:string,
-  queryReporte?:string,
-  frecuencia?:number,
-  prioridad?: number,
-  frecuenciaMaxima?:number,
-  tablas?:TablaQuery[],
-  campos?:CampoQuery[],
-  filtros?:Filtro[],
-  condiciones?:CondicionQuery[],
-  tablasOnJoin?:TablaOnJoin[],
-  descargando?: boolean,
-  consultando?: boolean,
-  resultadoConsulta?: any,
-  contadorCampo?:any,
-  action?: string,
-  publico?: boolean
 }
 
 

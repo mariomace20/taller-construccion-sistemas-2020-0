@@ -5,7 +5,6 @@ import { OrigenEffects } from './mantenimiento/origen.effects';
 
 // Consultas
 import { CompensacionEffects } from './consultas/compensacion.effects';
-import { ComisCompensacionEffects } from './consultas/comis-compensacion.effects';
 
 // Seguridad
 import { SistemaEffects } from './seguridad/sistema.effects';

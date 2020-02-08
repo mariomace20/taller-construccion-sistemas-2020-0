@@ -1,6 +1,5 @@
 import { Action } from '@ngrx/store';
 import { getCommonConsultaActions } from "../common-actions";
-import { CriterioCompensacionRequest } from '../../../../consultas/models/criterios';
 import { DetalleCompensacion, Compensacion } from '../../../../consultas/models';
 export const actions = {
   ...getCommonConsultaActions('Compensacion'),
@@ -9,7 +8,7 @@ export const actions = {
 export class GetCriterioCompensacion implements Action {
   readonly type = actions.GET_CRITERIO_PAGINADO;
 
-  constructor(public payload: CriterioCompensacionRequest) { }
+  constructor(public payload: any) { }
 }
 export class GetCriterioCompensacionSuccess implements Action {
   readonly type = actions.GET_CRITERIO_PAGINADO_SUCCESS;
