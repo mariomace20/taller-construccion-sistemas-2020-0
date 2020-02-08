@@ -13,21 +13,10 @@
     "e2e": "ng e2e",
     "bundle-report": "webpack-bundle-analyzer dist/stats.json",
     "start:dev-jorpa": "ng serve --disable-host-check --port 4202 --configuration=dev-jorpa",
-    "start:dev-gpeca": "ng serve --disable-host-check --port 4202 --configuration=dev-gpeca",
-    "start:dev-camra": "ng serve --disable-host-check --port 4202 --configuration=dev-camra",
-    "start:dev-ffoes": "ng serve --disable-host-check --port 4202 --configuration=dev-ffoes",
-    "start:dev-bgaso": "ng serve --disable-host-check --port 4202 --configuration=dev-bgaso",
-    "start:dev-cdecr": "ng serve --disable-host-check --port 4202 --configuration=dev-cdecr",
     "start:dev-mcoes": "ng serve --disable-host-check --port 4200 --configuration=dev-mcoes",
-    "start:dev-jggtt": "ng serve --disable-host-check --port 4200 --configuration=dev-jggtt",
-    "start:dev-ccu": "ng serve --disable-host-check --port 4202 --configuration=dev-ccu",
-    "start:dev-hllcc": "ng serve --disable-host-check --port 4202 --configuration=dev-hllcc",
-    "start:dev-gbali": "ng serve --disable-host-check --port 4202 --configuration=dev-gbali",
     "start:dev-kmuza": "ng serve --disable-host-check --port 4202 --configuration=dev-kmuza",
     "start:dev-vgamo": "ng serve --disable-host-check --port 4202 --configuration=dev-vgamo",
-    "start:dev-calca": "ng serve --disable-host-check --port 4202 --configuration=dev-calca",
-    "start:dev-wzequ": "ng serve --disable-host-check --port 4202 --configuration=dev-wzequ",
-    "start:dev-talv": "ng serve --configuration=dev-talv"
+    "start:dev-calca": "ng serve --disable-host-check --port 4202 --configuration=dev-calca"
   },
   "private": true,
   "dependencies": {

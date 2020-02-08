@@ -171,7 +171,7 @@ const DIRECTIVES = [
     },
     {
       provide: SICF_BATCH_CONTEXT_PATH,
-      useValue: 'sicfBatchContextPath'
+      useValue: 'batchContextPath'
     },
     {
       provide: SEC_AUTH,

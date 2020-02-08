@@ -6,7 +6,7 @@ interface AppConfig {
   baseUrl?: string;
   apiContextPath?: string;
   secContextPath?: string;
-  sicfBatchContextPath?: string;
+  batchContextPath?: string;
   agGridLicense?: string;
 }
 
@@ -26,8 +26,8 @@ export class AppConfigService {
         this.config.baseUrl = window.config.baseUrl ? window.config.baseUrl: environment.baseUrl;
         this.config.apiContextPath = window.config.apiContextPath ? window.config.apiContextPath: environment.apiContextPath;
         this.config.secContextPath = window.config.secContextPath ? window.config.secContextPath: environment.secContextPath;
-        this.config.sicfBatchContextPath = window.config.sicfBatchContextPath ? window.config.sicfBatchContextPath: 
-          environment.sicfBatchContextPath;
+        this.config.batchContextPath = window.config.batchContextPath ? window.config.batchContextPath:
+          environment.batchContextPath;
         this.config.agGridLicense = window.config.agGridLicense ? window.config.agGridLicense : environment.agGridLicense;
       } else {
         this.config = environment;
