@@ -118,7 +118,7 @@ export class GestionCuentaComponent implements OnInit, AfterViewInit, OnDestroy 
     });
   }
 
-  show(usuario: Usuario) {
+  show(usuario: any) {
     this.usuario = usuario;
     this.usuarioPerfilFacade.buscarPorUsuario(usuario.username);
     enableControls(this.form, false, ...this.controlsPass);
