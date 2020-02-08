@@ -7,8 +7,8 @@ export interface State {
 }
 
 export const INITIAL_STATE: State = {
-  baseTitle: 'UBA',
-  currentTitle: 'UBA'
+  baseTitle: 'SISGEA',
+  currentTitle: 'SISGEA'
 }
 
 export function uiReducer(state = INITIAL_STATE, action: UiActions) {
