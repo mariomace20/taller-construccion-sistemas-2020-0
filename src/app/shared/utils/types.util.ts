@@ -27,6 +27,9 @@ export const TYPES = {
   PROGRAMACION_ACADEMICA: { name: 'Programación Académica', otherTitle: 'Carga de Programación Académica', title: 'Programación Académica', resource: 'MANT_PROGACEDEMICA', fileNameExport:"ProgramacionAcademica" , module: MODULE.MANTENIMIENTO},
   DETALLE_HORARIO: { name: 'Detalle Horario', otherTitle: 'Carga de Detalle Horario', title: 'Detalle Horario', resource: 'MANT_DETHORARIO', fileNameExport:"DetalleHorario" , module: MODULE.MANTENIMIENTO},
   DOCENTES: { name: 'Docentes', otherTitle: 'Carga de Docentes', title: 'Docente', resource: 'MANT_DOCENTE', fileNameExport:"Docentes" , module: MODULE.MANTENIMIENTO},
+  SOLICITANTE: { name: 'Solicitante', title: 'Solicitante', resource: 'MANT_SOLICITANTE', fileNameExport:"Solicitantes" , module: MODULE.MANTENIMIENTO},
+  ESPACIO_ACADEMICO: { name: 'Espacio Académico', title: 'Espacio académico', resource: 'MANT_ESPACIO_ACADEMICO', fileNameExport:"EspaciosAcademicos" , module: MODULE.MANTENIMIENTO},
+
   /* Consultas */
   COMPENSACION:{name:'Log Contable',title: 'Log Contable',resource:'CON_COMPENSACION', fileNameExport:"LogContable", module: MODULE.CONSULTAS},
   /*Seguridad*/

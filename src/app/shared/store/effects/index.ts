@@ -2,6 +2,10 @@ import { AuthEffects } from './auth/auth.effects';
 import { AuthSistemaEffects } from './auth/auth-sistema.effects';
 // Mantenimientos
 import { OrigenEffects } from './mantenimiento/origen.effects';
+import { SolicitanteEffects } from './mantenimiento/solicitante.effects';
+import { EspacioAcademicoEffects } from './mantenimiento/espacio-academico.effects';
+import { MultitabCabEffects } from './mantenimiento/multitab-cab.effects';
+import { MultitabDetEffects } from './mantenimiento/multitab-det.effects';
 
 // Consultas
 import { CompensacionEffects } from './consultas/compensacion.effects';
@@ -28,6 +32,8 @@ export const effectsArr = [
   AuthSistemaEffects,
   // Mantenimientos
   OrigenEffects,
+  SolicitanteEffects,
+  EspacioAcademicoEffects,
   // Consultas
   CompensacionEffects,
   // Seguridad
@@ -50,6 +56,8 @@ export * from './auth/auth.effects';
 export * from './auth/auth-sistema.effects';
 // Mantenimientos
 export * from './mantenimiento/origen.effects';
+export * from './mantenimiento/solicitante.effects';
+export * from './mantenimiento/espacio-academico.effects';
 // Consultas
 export * from './consultas/compensacion.effects';
 // Seguridad

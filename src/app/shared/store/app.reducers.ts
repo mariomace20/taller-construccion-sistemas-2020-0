@@ -6,6 +6,10 @@ import * as fromAuth from './reducers/auth/auth.reducer';
 import * as fromHelp from './reducers/help.reducer';
 /*Mantenimientos*/
 import * as fromOrigen from './reducers/mantenimiento/origen.reducer';
+import * as fromSolicitante from './reducers/mantenimiento/solicitante.reducer';
+import * as fromEspacioAcademico from './reducers/mantenimiento/espacio-academico.reducer';
+import * as fromMultitabCab from './reducers/mantenimiento/multitab-cab.reducer';
+import * as fromMultitabDet from './reducers/mantenimiento/multitab-det.reducer';
 /*Consultas*/
 import * as fromCompensacion from './reducers/consultas/compensacion.reducer';
 /*Seguridad*/
@@ -27,6 +31,10 @@ import * as fromRecursoAsignacionGrilla from './reducers/seguridad/asignacion-pe
 /* Mantenimientos */
 import {
   Origen,
+  Solicitante,
+  EspacioAcademico,
+  MultitabCab,
+MultitabDet,
 } from '../../mantenimiento/models';
 /* Consultas */
 import {
@@ -59,6 +67,10 @@ export interface AppState {
   help: fromHelp.PageState,
   // Mantenimientos
   origenes: State<Origen>,
+  solicitantes: State<Solicitante>,
+  espaciosAcademico: State<EspacioAcademico>,
+  multitabCabs: State<MultitabCab>,
+  multitabDets: State<MultitabDet>,
   // Consultas
   compensaciones: ConsultaState<Compensacion>,
   // Seguridad
@@ -85,6 +97,10 @@ export const appReducers: ActionReducerMap<AppState> = {
   help: fromHelp.helpReducer,
   // Mantenimientos
   origenes: fromOrigen.origennReducer,
+  solicitantes: fromSolicitante.solicitanteReducer,
+  espaciosAcademico: fromEspacioAcademico.espacioAcademicoReducer,
+  multitabCabs: fromMultitabCab.multitabCabReducer,
+multitabDets: fromMultitabDet.multitabDetReducer,
   // Consultas
   compensaciones: fromCompensacion.consultaCompensacionReducer,
   // Seguridad

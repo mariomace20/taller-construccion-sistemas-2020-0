@@ -34,7 +34,17 @@ const routes: Routes = [
       {
         path: 'origen',
         loadChildren: './components/origen/origen.module#OrigenModule'
-      },
+      }
+      ,
+      {
+        path: 'solicitante',
+        loadChildren: './components/solicitante/solicitante.module#SolicitanteModule'
+      }
+      ,
+      {
+        path: 'espacio-academico',
+        loadChildren: './components/espacio-academico/espacio-academico.module#EspacioAcademicoModule'
+      }
     ],
     data: {
       title: 'Mantenimiento'
