@@ -27,9 +27,9 @@ export interface State {
 
 export const INITIAL_STATE: State = {
   infoApp: {
-    company: 'ODYBANK',
+    company: 'FISI',
     version: '1.0.0',
-    year: 2019
+    year: 2020
   },
   pathEndpoints: {
     AUTH: '',

@@ -9,6 +9,8 @@ import { Store } from '@ngrx/store';
 import { Sistema } from '../../seguridad/models';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+//Temporal
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -35,16 +37,20 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(
     private authFacade: AuthFacade,
-    private store: Store<AppState>
-  ) { }
+    private store: Store<AppState>,
+    private _router: Router,
+  ) {
+    console.log('entro1');
+  }
 
   ngOnInit() {
+    console.log('entro2');
     this.loginFormGroup = new FormGroup({
       'username': new FormControl('', [Validators.required]),
       'contrasenia': new FormControl('', [Validators.required]),
       'idSistema': new FormControl(1, [Validators.required])
     });
-    this.authFacade.initData();
+    //this.authFacade.initData();
     this.store.select('auth')
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(auth => {
@@ -60,7 +66,9 @@ export class LoginComponent implements OnInit, OnDestroy {
   onLogin() {
     this.loginFormGroup.controls['idSistema'].setValue(this.searchSicf());
     let loginForm: LoginForm = this.loginFormGroup.value;
-    this.authFacade.logIn(loginForm);
+    //this.authFacade.logIn(loginForm);
+    //Temporal
+    this._router.navigate(['/mantenimiento']);
   }
 
   searchSicf():number{

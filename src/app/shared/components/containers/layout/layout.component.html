@@ -1,6 +1,6 @@
 <app-header
   [fixed]="true"
-  [navbarBrandFull]="{src: 'assets/img/sisgea_logo.png', width: 135, height: 35, alt: 'CoreUI Logo'}"
+  [navbarBrandFull]="{src: 'assets/img/sisgea_logo.png', width: 120, height: 35, alt: 'CoreUI Logo'}"
   [navbarBrandMinimized]="{src: 'assets/img/unmsm_logo.jpg', width: 35, height: 35, alt: 'CoreUI Logo'}"
   [sidebarToggler]="'lg'"
   [asideMenuToggler]="asideMenuToggler"
@@ -26,10 +26,10 @@
         </a>
       </div>
     </li>-->
-    <li (click)="redirectParametrosSistema()" class="nav-item px-3 redirect" *ngIf="permisoConsultaFechaProceso">
+    <!--<li (click)="redirectParametrosSistema()" class="nav-item px-3 redirect" *ngIf="permisoConsultaFechaProceso">
       <i class="fa fa-calendar"></i>&nbsp;Fecha Proceso: <span *ngIf="loadingFecha; else fechaCargada">Cargando...</span>
         <ng-template #fechaCargada>{{ fechaProceso === null ? 'No se puede mostrar': fechaProceso }} </ng-template>
-    </li>
+    </li>-->
     <li class="nav-item dropdown" dropdown placement="bottom right">
       <a class="nav-link ob-custom-label-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false">
          <i class="fa fa-user" aria-hidden="true"></i>&nbsp;{{nombreUsuario}} <i class="fa fa-caret-down"></i>

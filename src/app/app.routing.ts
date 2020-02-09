@@ -15,7 +15,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/dashboard',
+    redirectTo: '/login',
     pathMatch: 'full'
   },
   {
@@ -26,14 +26,19 @@ export const routes: Routes = [
     },
     children: [
       {
+        path: 'dashborad',
+        loadChildren: './dashborad/dashboard.module#DashboardModule',
+        //canActivate: [AuthGuard]
+      },
+      {
         path: 'mantenimiento',
         loadChildren: './mantenimiento/mantenimiento.module#MantenimientoModule',
-        canActivate: [AuthGuard]
+        //canActivate: [AuthGuard]
       },
       {
         path: 'consulta',
         loadChildren: './consultas/consulta.module#ConsultaModule',
-        canActivate: [AuthGuard]
+        //canActivate: [AuthGuard]
       }
     ]
   },

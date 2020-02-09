@@ -8,6 +8,10 @@ const routes: Routes = [
     canActivateChild: [AuthGuard],
     children: [
       {
+        path: 'curso',
+        loadChildren: './components/cursos/curso.module#CursoModule'
+      },
+      {
         path: 'origen',
         loadChildren: './components/origen/origen.module#OrigenModule'
       },

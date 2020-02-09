@@ -140,9 +140,9 @@ export class LayoutComponent implements OnDestroy, OnInit, AfterViewInit {
     }
     this.store.select('parametrosSistema').pipe(takeUntil(this.ngUnsubscribe)).subscribe(state => {
       setTimeout(() => {
-        this.loadingFecha = state.loading;
+        //this.loadingFecha = state.loading;
       });
-      this.fechaProceso = state.data && state.data.length > 0 ? state.data[0].fechaProceso : null;
+      //this.fechaProceso = state.data && state.data.length > 0 ? state.data[0].fechaProceso : null;
     });
   }
 
