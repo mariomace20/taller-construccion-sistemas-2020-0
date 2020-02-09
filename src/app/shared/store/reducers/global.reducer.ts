@@ -12,15 +12,8 @@ export interface State {
   pathEndpoints: {
     AUTH: string,
     MANT_GENERAL: string,
-    MANT_COMPENSACION: string,
-    MANT_MARCA_INT: string,
-    MANT_FACTURACION: string,
-    MANT_PROCESAMIENTO: string,
-    MANT_TARIFARIO: string,
     MANT_SEGURIDAD: string,
     CONSULTAS: string,
-    REPORTES: string,
-    CONCILIACION: string
   },
   messages: GlobalMessages
 }
@@ -34,15 +27,8 @@ export const INITIAL_STATE: State = {
   pathEndpoints: {
     AUTH: '',
     MANT_GENERAL: /*'mantenimiento/general/'*/'',
-    MANT_COMPENSACION: /*'mantenimiento/compensacion/',*/'',
-    MANT_MARCA_INT: '',
-    MANT_FACTURACION: /*'mantenimiento/facturacion/'*/'',
-    MANT_PROCESAMIENTO: /*'mantenimiento/procesamiento/'*/'',
-    MANT_TARIFARIO: /*'mantenimiento/tarifario/'*/'',
     MANT_SEGURIDAD: /*'seguridad/'*/'',
     CONSULTAS: '',
-    REPORTES: '',
-    CONCILIACION: '',
   },
   messages: {
     ADD_SUCCESS: 'Se registró correctamente.',

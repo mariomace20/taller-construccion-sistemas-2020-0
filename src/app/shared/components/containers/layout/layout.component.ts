@@ -133,8 +133,8 @@ export class LayoutComponent implements OnDestroy, OnInit, AfterViewInit {
   }
 
   initFechaProceso() {
-    this.permisoConsultaFechaProceso = this.permissionsService.hasPermission(
-      this.permissionsService.getValidActions(TYPES.PARAMETRO_SISTEMA.resource), RESOURCE_ACTIONS.CONSULTA);
+  /*  this.permisoConsultaFechaProceso = this.permissionsService.hasPermission(
+      //this.permissionsService.getValidActions(TYPES.PARAMETRO_SISTEMA.resource), RESOURCE_ACTIONS.CONSULTA);
     if (this.permisoConsultaFechaProceso) {
       //this.store.dispatch(new GetAllParametroSistema());
     }
@@ -143,7 +143,7 @@ export class LayoutComponent implements OnDestroy, OnInit, AfterViewInit {
         //this.loadingFecha = state.loading;
       });
       //this.fechaProceso = state.data && state.data.length > 0 ? state.data[0].fechaProceso : null;
-    });
+    });*/
   }
 
   /*

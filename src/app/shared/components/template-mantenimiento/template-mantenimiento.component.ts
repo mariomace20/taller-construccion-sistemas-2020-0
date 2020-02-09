@@ -13,10 +13,12 @@ export class TemplateMantenimientoComponent implements OnInit {
   @Input() detailType: Type;
   @Output() clickRegisterBtn?: EventEmitter<any> = new EventEmitter<any>();
   @Output() clickExportBtn?: EventEmitter<any> = new EventEmitter<any>();
+  @Output() clickCargaBtn?: EventEmitter<any> = new EventEmitter<any>();
 
   acciones: string[];
   accionesDetalle: string[];
   permisoRegistro: boolean = false;
+  permisoCarga: boolean = false;
   permisoActualizacion: boolean = false;
   permisoExportacion: boolean = false;
   permisoConsulta: boolean = false;
@@ -48,6 +50,10 @@ export class TemplateMantenimientoComponent implements OnInit {
 
   onClickRegister(){
     this.clickRegisterBtn.emit();
+  }
+
+  onClickCarga(){
+    this.clickCargaBtn.emit();
   }
 
   onClickExport(){

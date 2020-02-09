@@ -54,4 +54,6 @@ export const MESSAGE_BODY_DESCRIPCIONES_EMPTY_REPORT_SUCCESS = "Agregue un nombr
 
 // MENSAJES GLOBALES PROCESOS
 export const MESSAGE_TITLE_CARGA_ERROR = "Carga fallida";
+export const MESSAGE_TITLE_CARGA_SUCCESS = "Carga exitosa";
+export const MESSAGE_BODY_CARGA_SUCCESS = "Proceso de carga completado";
 export const MESSAGE_BODY_CARGA_DUPLICADA_ERROR = "Archivo [name] duplicado";

@@ -3,14 +3,12 @@ import { Injectable, Injector } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../shared/store/app.reducers';
-import { Origen } from '../models';
 import { Observable } from 'rxjs';
-import { FILE_EXT } from '../../shared/utils';
 
 @Injectable({
   providedIn: 'root'
 })
-export class OrigenService extends HttpService {
+export class CursoService extends HttpService {
 
   constructor(
     injector: Injector,
@@ -19,27 +17,21 @@ export class OrigenService extends HttpService {
   ) {
     let path;
     store.select('globalData').subscribe(data => path = data.pathEndpoints.MANT_GENERAL);
-    super(injector, httpClient, `${path}origenes`);
+    super(injector, httpClient, `${path}cursos`);
   }
 
   buscarTodos(): Observable<any>  {
     return super.get();
   }
 
-  registrar(origen: Origen): Observable<any>  {
-    return super.post(origen);
+  cargarCursos(files: File[]): Observable<any>  {
+    let formData: FormData  = new FormData();
+    files.forEach(function(item){
+        formData.append("file[]", item, item.name);
+    });
+    console.log(files,formData);
+    return super.upload(formData, '/carga', {responseType: 'text'});
   }
 
-  actualizar(origen: Origen): Observable<any>  {
-    return super.put(origen, origen.idOrigen);
-  }
-
-  eliminar(origen: Origen): Observable<any>  {
-    return super.delete(origen.idOrigen);
-  }
-
-  exportar(){
-    return super.download(FILE_EXT.XLSX);
-  }
 
 }

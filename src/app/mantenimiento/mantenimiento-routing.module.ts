@@ -9,7 +9,7 @@ const routes: Routes = [
     children: [
       {
         path: 'curso',
-        loadChildren: './components/cursos/curso.module#CursoModule'
+        loadChildren: './components/curso/curso.module#CursoModule'
       },
       {
         path: 'origen',
