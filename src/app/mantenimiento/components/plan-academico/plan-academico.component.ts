@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
 import { ConsultaModalComponent, TemplateMantenimientoComponent } from '../../../shared';
 import { TYPES, Type, getContextMenuItemsMantenimiento, removeElementArr, MESSAGE_BODY_CARGA_SUCCESS, MESSAGE_TITLE_CARGA_SUCCESS, MESSAGE_BODY_CARGA_DUPLICADA_ERROR, MESSAGE_TITLE_CARGA_ERROR, FA_ICON_UPLOAD, DEFAULT_SEPARATOR, joinWords, commonConfigTablaMantenimiento, updateGrid } from '../../../shared/utils';
 import { NgxDropzoneChangeEvent } from 'ngx-dropzone';
@@ -13,7 +13,7 @@ import { PlanAcademicoFacade } from '../../facade';
   templateUrl: './plan-academico.component.html',
   styleUrls: ['./plan-academico.component.scss']
 })
-export class PlanAcademicoComponent implements OnInit, AfterViewInit, OnDestroy {
+export class PlanAcademicoComponent implements OnInit, AfterViewInit, OnDestroy, AfterViewChecked {
 
   @ViewChild('template') template: TemplateMantenimientoComponent;
 
@@ -42,14 +42,12 @@ export class PlanAcademicoComponent implements OnInit, AfterViewInit, OnDestroy 
   constructor(
     private cursoFacade: PlanAcademicoFacade,
     private toasterService: ToastrService,
+    private cdRef : ChangeDetectorRef,
   ) {
     this.type = TYPES.PLAN_ACADEMICO;
   }
 
   ngOnInit() {
-    this.template.permisoRegistro = false;
-    this.template.permisoCarga = true;
-    this.template.permisoExportacion = true;
     this.gridOptions = {
       ...commonConfigTablaMantenimiento,
       getRowNodeId: (data) => {
@@ -67,10 +65,17 @@ export class PlanAcademicoComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   ngAfterViewInit(){
+    this.template.permisoRegistro = false;
+    this.template.permisoCarga = true;
+    this.template.permisoExportacion = true;
     this.gridOptions.api.setColumnDefs(this.initColumnDefs());
     this.cursoFacade.buscarTodos().pipe(takeUntil(this.ngUnsubscribe)).subscribe(data => {
       updateGrid(this.gridOptions,data,this.gridColumnApi,true,true);
     });;
+  }
+
+  ngAfterViewChecked() {
+    this.cdRef.detectChanges();
   }
 
   ngOnDestroy() {
