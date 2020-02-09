@@ -23,16 +23,40 @@ export const navItems: NavData[] = [
     icon: 'fa fa-table nivel-0',
     children: [
       {
-        name: 'Solicitantes',
+        name: 'Docentes',
         icon: 'fa fa-table nivel-1',
-        url: '/mantenimiento/parametroSistema',
-        permissions: ['MANT_CORPSW']
+        url: '/mantenimiento/docente',
+        permissions: ['MANT_DOCENTE']
       },
       {
-        name: 'Generales',
+        name: 'Cursos',
         icon: 'fa fa-table nivel-1',
-        url: '/mantenimiento/parametroSistema',
-        permissions: ['MANT_CORPSW']
+        url: '/mantenimiento/cursos',
+        permissions: ['MANT_CURSO']
+      },
+      {
+        name: 'Horario',
+        icon: 'fa fa-table nivel-1',
+        url: '/mantenimiento/horario',
+        permissions: ['MANT_HORARIO']
+      },
+      {
+        name: 'Detalle Horario',
+        icon: 'fa fa-table nivel-1',
+        url: '/mantenimiento/detalle-horario',
+        permissions: ['MANT_DETHORARIO']
+      },
+      {
+        name: 'Plan Académico',
+        icon: 'fa fa-table nivel-1',
+        url: '/mantenimiento/plan-academico',
+        permissions: ['MANT_PLANACADEMICO']
+      },
+      {
+        name: 'Programación Académica',
+        icon: 'fa fa-table nivel-1',
+        url: '/mantenimiento/programacion-academica',
+        permissions: ['MANT_PROGACEDEMICA']
       },
     ]
   },
