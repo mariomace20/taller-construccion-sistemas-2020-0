@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class CursoService extends HttpService {
+export class ProgramacionAcademicaService extends HttpService {
 
   constructor(
     injector: Injector,
@@ -17,7 +17,7 @@ export class CursoService extends HttpService {
   ) {
     let path;
     store.select('globalData').subscribe(data => path = data.pathEndpoints.MANT_GENERAL);
-    super(injector, httpClient, `${path}curso`);
+    super(injector, httpClient, `${path}programacion-academica`);
   }
 
   buscarTodos(): Observable<any>  {

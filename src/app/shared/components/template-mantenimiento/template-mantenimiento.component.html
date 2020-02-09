@@ -9,11 +9,11 @@
             <span *ngIf="type.otherTitle" style="font-size: 1.25em">{{type.otherTitle}}</span>
           </div>
           <div class="float-right">
-            <button *ngIf="permisoCarga && !type.otherTitle" class="btn btn-primary" (click)="onClickCarga()">
+            <button *ngIf="permisoCarga" class="btn btn-primary" (click)="onClickCarga()">
               <i class="fa fa-upload" aria-hidden="true"></i>
               Carga masiva
             </button>
-            <button *ngIf="permisoRegistro && !type.otherTitle" class="btn btn-primary" (click)="onClickRegister()">
+            <button *ngIf="permisoRegistro" class="btn btn-primary" (click)="onClickRegister()">
               <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;
               {{type.name}}
             </button>

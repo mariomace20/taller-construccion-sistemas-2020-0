@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { HorarioService } from '../services';
 
 @Injectable()
-export class CursoFacade {
+export class ProgramacionAcademicaFacade {
 
   constructor(
     private store: Store<AppState>,

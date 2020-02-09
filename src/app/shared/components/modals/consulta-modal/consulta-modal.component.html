@@ -3,7 +3,8 @@
   <div class="modal-dialog modal-consultas" [ngClass]="class" role="document"  #mdDialog>
     <div class="modal-content" style="background-color:#f2f2f2;" #mdContent>
       <div class="modal-header">
-        <h4 class="modal-title" style="color:#78788c;"> Detalle {{type.name}}</h4>
+        <h4 class="modal-title" *ngIf="type.otherTitle" style="color:#78788c;"> {{type.otherTitle}}</h4>
+        <h4 class="modal-title" *ngIf="!type.otherTitle" style="color:#78788c;"> Detalle {{type.name}}</h4>
         <div class="pull-right">
           <button *ngIf="false" tooltip="Cerrar" type="button" class="close" (click)="myModal.hide()" aria-label="Close">
             <span aria-hidden="true">&times;</span>

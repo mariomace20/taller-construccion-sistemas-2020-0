@@ -12,6 +12,26 @@ const routes: Routes = [
         loadChildren: './components/curso/curso.module#CursoModule'
       },
       {
+        path: 'detalle-horario',
+        loadChildren: './components/detalle-horario/detalle-horario.module#DetalleHorarioModule'
+      },
+      {
+        path: 'docente',
+        loadChildren: './components/docente/docente.module#DocenteModule'
+      },
+      {
+        path: 'horario',
+        loadChildren: './components/horario/horario.module#HorarioModule'
+      },
+      {
+        path: 'plan-academico',
+        loadChildren: './components/plan-academico/plan-academico.module#PlanAcademicoModule'
+      },
+      {
+        path: 'programacion-academica',
+        loadChildren: './components/programacion-academica/programacion-academica.module#ProgramacionAcademicaModule'
+      },
+      {
         path: 'origen',
         loadChildren: './components/origen/origen.module#OrigenModule'
       },
