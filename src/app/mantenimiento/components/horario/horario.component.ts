@@ -6,14 +6,14 @@ import { GridOptions, GridApi, ColDef } from 'ag-grid-community';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { CursoFacade } from '../../facade';
+import { HorarioFacade } from '../../facade';
 
 @Component({
-  selector: 'app-curso',
-  templateUrl: './curso.component.html',
-  styleUrls: ['./curso.component.scss']
+  selector: 'app-horario',
+  templateUrl: './horario.component.html',
+  styleUrls: ['./horario.component.scss']
 })
-export class CursoComponent implements OnInit, AfterViewInit, OnDestroy {
+export class HorarioComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('template') template: TemplateMantenimientoComponent;
 
@@ -40,10 +40,10 @@ export class CursoComponent implements OnInit, AfterViewInit, OnDestroy {
   filesNamesAdded: string[] = [];
 
   constructor(
-    private cursoFacade: CursoFacade,
+    private cursoFacade: HorarioFacade,
     private toasterService: ToastrService,
   ) {
-    this.type = TYPES.CURSO;
+    this.type = TYPES.HORARIO;
   }
 
   ngOnInit() {
@@ -53,7 +53,7 @@ export class CursoComponent implements OnInit, AfterViewInit, OnDestroy {
     this.gridOptions = {
       ...commonConfigTablaMantenimiento,
       getRowNodeId: (data) => {
-        return data.idCurso;
+        return data.idHorario;
       },
       onGridReady: (params) => {
         this.gridApi = params.api;
@@ -109,60 +109,43 @@ export class CursoComponent implements OnInit, AfterViewInit, OnDestroy {
   initColumnDefs(): ColDef[] {
     return [
       {
-        headerName: "Plan Estudios",
-        field: "idPlan",
-        cellClass: 'ob-type-string-center',
-        filter: 'agTextColumnFilter',
-        valueGetter: (params) => {
-          return !params.data ? '' : joinWords(DEFAULT_SEPARATOR, params.data.idPlan, params.data.descripcionPlan);
-        },
-        filterParams: { newRowsAction: "keep" },
-      },
-      {
         headerName: "Curso",
         field: "idCurso",
         cellClass: 'ob-type-string-center',
         filter: 'agTextColumnFilter',
         valueGetter: (params) => {
-          return !params.data ? '' : joinWords(DEFAULT_SEPARATOR, params.data.idCurso, params.data.descripcion);
+          return !params.data ? '' : joinWords(DEFAULT_SEPARATOR, params.data.idCurso, params.data.descripcionCurso);
         },
         filterParams: { newRowsAction: "keep" },
       },
       {
-        headerName: "Ciclo",
-        field: "idCiclo",
+        headerName: "Sección",
+        field: "seccion",
         cellClass: 'ob-type-string-center',
         filter: 'agTextColumnFilter',
         filterParams: { newRowsAction: "keep" },
       },
       {
-        headerName: "Especialidad",
-        field: 'especialidad',
+        headerName: "Dia",
+        field: 'dia',
         cellClass: 'ob-type-string',
         filter: 'agTextColumnFilter',
         filterParams: { newRowsAction: "keep" }
       },
       {
-        headerName: "Creditaje",
-        field: "creditaje",
-        cellClass: 'ob-type-string-center',
+        headerName: "Inicio",
+        field: 'horarioInicio',
+        cellClass: 'ob-type-string',
         filter: 'agTextColumnFilter',
-        filterParams: { newRowsAction: "keep" },
+        filterParams: { newRowsAction: "keep" }
       },
       {
-        headerName: "Tipo",
-        field: "tipo",
-        cellClass: 'ob-type-string-center',
+        headerName: "Fin",
+        field: 'horarioFin',
+        cellClass: 'ob-type-string',
         filter: 'agTextColumnFilter',
-        filterParams: { newRowsAction: "keep" },
-      },
-      {
-        headerName: "Grupo",
-        field: "grupo",
-        cellClass: 'ob-type-string-center',
-        filter: 'agTextColumnFilter',
-        filterParams: { newRowsAction: "keep" },
-      },
+        filterParams: { newRowsAction: "keep" }
+      }
     ];
   }
 

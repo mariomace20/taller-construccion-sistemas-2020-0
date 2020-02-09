@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { CursoRoutingModule } from './curso-routing.module';
-import { CursoComponent } from './curso.component';
+import { HorarioRoutingModule } from './horario-routing.module';
+import { HorarioComponent } from './horario.component';
 import { SharedModule } from '../../../shared/shared.module';
-import { CursoFacade } from '../../facade';
+import { HorarioFacade } from '../../facade';
 import { ObGridModule } from '../../../shared/ob-grid.module';
 
 @NgModule({
-  declarations: [CursoComponent],
+  declarations: [HorarioComponent],
   imports: [
     CommonModule,
     SharedModule,
     ObGridModule,
-    CursoRoutingModule
+    HorarioRoutingModule
   ],
   providers: [
-    CursoFacade
+    HorarioFacade
   ]
 })
-export class CursoModule { }
+export class HorarioModule { }
