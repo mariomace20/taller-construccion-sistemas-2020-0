@@ -21,7 +21,12 @@ export const MODULE = {
 export const TYPES = {
   /* Mantenimientos */
   ORIGEN: { name: 'Origen', title: 'Origen', resource: 'MANT_ORIGEN', fileNameExport:"Origenes" , module: MODULE.MANTENIMIENTO},
-  CURSO: { name: 'Curso', title: 'Curso', resource: 'MANT_CURSO', fileNameExport:"Curso" , module: MODULE.MANTENIMIENTO},
+  CURSO: { name: 'Cursos', otherTitle: 'Carga de Cursos', title: 'Curso', resource: 'MANT_CURSO', fileNameExport:"Cursos" , module: MODULE.MANTENIMIENTO},
+  HORARIO: { name: 'Horarios', otherTitle: 'Carga de Horarios', title: 'Curso', resource: 'MANT_HORARIO', fileNameExport:"Horarios" , module: MODULE.MANTENIMIENTO},
+  PLAN_ACADEMICO: { name: 'Cursos', otherTitle: 'Carga de Plan Académico', title: 'Plan Académico', resource: 'MANT_PLANACADEMICO', fileNameExport:"PlanAcademico" , module: MODULE.MANTENIMIENTO},
+  PROGRAMACION_ACADEMICA: { name: 'Programación Académica', otherTitle: 'Carga de Programación Académica', title: 'Programación Académica', resource: 'MANT_PROGACEDEMICA', fileNameExport:"ProgramacionAcademica" , module: MODULE.MANTENIMIENTO},
+  DETALLE_HORARIO: { name: 'Detalle Horario', otherTitle: 'Carga de Detalle Horario', title: 'Detalle Horario', resource: 'MANT_DETHORARIO', fileNameExport:"DetalleHorario" , module: MODULE.MANTENIMIENTO},
+  DOCENTES: { name: 'Docentes', otherTitle: 'Carga de Docentes', title: 'Docente', resource: 'MANT_DOCENTE', fileNameExport:"Docentes" , module: MODULE.MANTENIMIENTO},
   /* Consultas */
   COMPENSACION:{name:'Log Contable',title: 'Log Contable',resource:'CON_COMPENSACION', fileNameExport:"LogContable", module: MODULE.CONSULTAS},
   /*Seguridad*/
