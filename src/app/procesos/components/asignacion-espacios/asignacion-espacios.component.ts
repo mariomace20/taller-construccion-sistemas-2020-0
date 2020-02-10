@@ -9,6 +9,7 @@ import { Store } from '@ngrx/store';
 import { ErrorService } from '../../../shared/services/errors/error.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { AsignacionEspaciosFacade } from '../../facade/asignacion-espacios.facade';
 
 @Component({
   selector: 'app-asignacion-espacios',
@@ -34,7 +35,7 @@ export class AsignacionEspaciosComponent implements OnInit, AfterViewInit, OnDes
   private gridColumnApi;
   templateHtmlMsg:string;
   constructor(
-    //private origenFacade: OrigenFacade,
+    private asignacionEspaciosFacade: AsignacionEspaciosFacade,
     private toastr: ToastrService,
     private store: Store<AppState>,
     private errorService: ErrorService,
@@ -82,7 +83,7 @@ export class AsignacionEspaciosComponent implements OnInit, AfterViewInit, OnDes
     this.template.permisoExportacion = true;
     this.template.permisoProcesar = true;
     this.gridOptions.api.setColumnDefs(this.initColumnDefs());
-    //this.origenFacade.buscarTodos();
+    this.asignacionEspaciosFacade.initData();
     this.manageState();
   }
 
@@ -111,7 +112,7 @@ export class AsignacionEspaciosComponent implements OnInit, AfterViewInit, OnDes
     const action = this.mdSave.action;
     switch (action) {
       case RESOURCE_ACTIONS.ACTUALIZACION:
-        this.origenFacade.actualizar(this.form.getRawValue());
+        this.asignacionEspaciosFacade.actualizar(this.form.getRawValue());
         break;
     }
   }
