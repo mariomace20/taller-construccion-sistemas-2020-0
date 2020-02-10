@@ -28,7 +28,7 @@
     </li>-->
     <li (click)="abrirModalParametros()" class="nav-item px-3 redirect">
       <i class="fa fa-calendar"></i>&nbsp;Periodo Académico: <span *ngIf="loadingFecha; else periodoCargando">Cargando...</span>
-        <ng-template #fechaCargada>{{ periodo === null ? 'No se puede mostrar': periodo }} </ng-template>
+        {{ periodo === null ? 'No se puede mostrar': periodo }}
     </li>
     <li class="nav-item dropdown" dropdown placement="bottom right">
       <a class="nav-link ob-custom-label-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false">

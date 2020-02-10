@@ -40,7 +40,7 @@ export class PlanAcademicoComponent implements OnInit, AfterViewInit, OnDestroy,
   filesNamesAdded: string[] = [];
 
   constructor(
-    private cursoFacade: PlanAcademicoFacade,
+    private facade: PlanAcademicoFacade,
     private toasterService: ToastrService,
     private cdRef : ChangeDetectorRef,
   ) {
@@ -69,7 +69,7 @@ export class PlanAcademicoComponent implements OnInit, AfterViewInit, OnDestroy,
     this.template.permisoCarga = true;
     this.template.permisoExportacion = true;
     this.gridOptions.api.setColumnDefs(this.initColumnDefs());
-    this.cursoFacade.buscarTodos().pipe(takeUntil(this.ngUnsubscribe)).subscribe(data => {
+    this.facade.buscarTodos().pipe(takeUntil(this.ngUnsubscribe)).subscribe(data => {
       updateGrid(this.gridOptions,data,this.gridColumnApi,true,true);
     });;
   }
@@ -105,10 +105,14 @@ export class PlanAcademicoComponent implements OnInit, AfterViewInit, OnDestroy,
 
   cargarArchivo(){
     this.configCarga.loading = true;
-    this.cursoFacade.buscarTodos().pipe(takeUntil(this.ngUnsubscribe)).subscribe(data => {
+    this.facade.cargar(this.files).pipe(takeUntil(this.ngUnsubscribe)).subscribe(data => {
       this.toasterService.success(MESSAGE_BODY_CARGA_SUCCESS, MESSAGE_TITLE_CARGA_SUCCESS);
       this.configCarga.loading = false;
-    });;
+      this.md.hide();
+      this.facade.buscarTodos().pipe(takeUntil(this.ngUnsubscribe)).subscribe(data => {
+        updateGrid(this.gridOptions,data,this.gridColumnApi,true,true);
+      });
+    });
   }
 
   initColumnDefs(): ColDef[] {
@@ -149,7 +153,10 @@ export class PlanAcademicoComponent implements OnInit, AfterViewInit, OnDestroy,
       },
       {
         headerName: "Especialidad",
-        field: "descripcionEspecialidad",
+        field: "especialidad",
+        valueGetter: (params) => {
+          return !params.data ? '' : joinWords(DEFAULT_SEPARATOR, params.data.especialidad, params.data.descripcionEspecialidad);
+        },
         cellClass: 'ob-type-string-center',
         filter: 'agTextColumnFilter',
         filterParams: { newRowsAction: "keep" },

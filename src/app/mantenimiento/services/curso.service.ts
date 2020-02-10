@@ -30,7 +30,7 @@ export class CursoService extends HttpService {
         formData.append("file[]", item, item.name);
     });
     console.log(files,formData);
-    return super.upload(formData, '/carga', {responseType: 'text'});
+    return super.upload(formData, 'cargar', {responseType: 'text'});
   }
 
 

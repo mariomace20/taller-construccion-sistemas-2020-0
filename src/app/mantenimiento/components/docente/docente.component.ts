@@ -40,7 +40,7 @@ export class DocenteComponent implements OnInit, AfterViewInit, OnDestroy, After
   filesNamesAdded: string[] = [];
 
   constructor(
-    private cursoFacade: DocenteFacade,
+    private facade: DocenteFacade,
     private toasterService: ToastrService,
     private cdRef : ChangeDetectorRef,
   ) {
@@ -69,7 +69,7 @@ export class DocenteComponent implements OnInit, AfterViewInit, OnDestroy, After
     this.template.permisoCarga = true;
     this.template.permisoExportacion = true;
     this.gridOptions.api.setColumnDefs(this.initColumnDefs());
-    this.cursoFacade.buscarTodos().pipe(takeUntil(this.ngUnsubscribe)).subscribe(data => {
+    this.facade.buscarTodos().pipe(takeUntil(this.ngUnsubscribe)).subscribe(data => {
       updateGrid(this.gridOptions,data,this.gridColumnApi,true,true);
     });;
   }
@@ -105,10 +105,14 @@ export class DocenteComponent implements OnInit, AfterViewInit, OnDestroy, After
 
   cargarArchivo(){
     this.configCarga.loading = true;
-    this.cursoFacade.buscarTodos().pipe(takeUntil(this.ngUnsubscribe)).subscribe(data => {
+    this.facade.cargar(this.files).pipe(takeUntil(this.ngUnsubscribe)).subscribe(data => {
       this.toasterService.success(MESSAGE_BODY_CARGA_SUCCESS, MESSAGE_TITLE_CARGA_SUCCESS);
       this.configCarga.loading = false;
-    });;
+      this.md.hide();
+      this.facade.buscarTodos().pipe(takeUntil(this.ngUnsubscribe)).subscribe(data => {
+        updateGrid(this.gridOptions,data,this.gridColumnApi,true,true);
+      });
+    });
   }
 
   initColumnDefs(): ColDef[] {

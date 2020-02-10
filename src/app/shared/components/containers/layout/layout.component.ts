@@ -6,8 +6,7 @@ import { Store } from '@ngrx/store';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Logout } from '../../../store/actions/auth/auth.actions';
 import { Router } from '@angular/router';
-import { MdFormOpts } from '../../modals/form-modal/form-modal.component';
-import { ModalComponent } from '../../modals/modal/modal.component';
+import { MdFormOpts, FormModalComponent } from '../../modals/form-modal/form-modal.component';
 import { SEC_AUTH, TYPES, RESOURCE_ACTIONS } from '../../../utils';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -25,7 +24,7 @@ export class LayoutComponent implements OnDestroy, OnInit, AfterViewInit {
 
   @ViewChild("sidebarNav", { read: ElementRef }) sidebarNav: ElementRef;
 
-  @ViewChild('md') md: ModalComponent;
+  @ViewChild('md') md: FormModalComponent;
 
   options: MdFormOpts = {
     title: 'Parámetros del Sistema',
@@ -98,7 +97,7 @@ export class LayoutComponent implements OnDestroy, OnInit, AfterViewInit {
     this.contractSidebarItems();
     this.parametrosGeneralesFacade.buscarTodos().pipe(takeUntil(this.ngUnsubscribe)).subscribe(data => {
       console.log(data);
-      this.periodo = data.periodo;
+      this.periodo = data[0].periodo;
     });
   }
 
@@ -181,12 +180,15 @@ export class LayoutComponent implements OnDestroy, OnInit, AfterViewInit {
   }
 
   abrirModalParametros(){
-    this.md.show();
+    this.md.show({periodo: this.periodo},RESOURCE_ACTIONS.ACTUALIZACION);
   }
 
   guardarParametros(){
     this.parametrosGeneralesFacade.registrar(this.form.getRawValue()).pipe(takeUntil(this.ngUnsubscribe)).subscribe(data => {
-      this.toasterService.success('Realizado con exito','Actualización')
+      this.toasterService.success('Realizado con exito','Actualización');
+      this.parametrosGeneralesFacade.buscarTodos().pipe(takeUntil(this.ngUnsubscribe)).subscribe(data => {
+        this.periodo = data[0].periodo;
+      });
       this.md.hide();
     });
   }

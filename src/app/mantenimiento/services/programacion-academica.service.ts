@@ -17,7 +17,7 @@ export class ProgramacionAcademicaService extends HttpService {
   ) {
     let path;
     store.select('globalData').subscribe(data => path = data.pathEndpoints.MANT_GENERAL);
-    super(injector, httpClient, `${path}programacion-academica`);
+    super(injector, httpClient, `${path}pprogramaciones`);
   }
 
   buscarTodos(): Observable<any>  {
@@ -30,7 +30,7 @@ export class ProgramacionAcademicaService extends HttpService {
         formData.append("file[]", item, item.name);
     });
     console.log(files,formData);
-    return super.upload(formData, '/carga', {responseType: 'text'});
+    return super.upload(formData, 'cargar', {responseType: 'text'});
   }
 
 

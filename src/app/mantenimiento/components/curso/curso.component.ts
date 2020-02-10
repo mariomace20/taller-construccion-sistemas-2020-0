@@ -40,7 +40,7 @@ export class CursoComponent implements OnInit, AfterViewInit, OnDestroy, AfterVi
   filesNamesAdded: string[] = [];
 
   constructor(
-    private cursoFacade: CursoFacade,
+    private facade: CursoFacade,
     private toasterService: ToastrService,
     private cdRef : ChangeDetectorRef,
   ) {
@@ -70,7 +70,7 @@ export class CursoComponent implements OnInit, AfterViewInit, OnDestroy, AfterVi
     this.template.permisoCarga = true;
     this.template.permisoExportacion = true;
     this.gridOptions.api.setColumnDefs(this.initColumnDefs());
-    this.cursoFacade.buscarTodos().pipe(takeUntil(this.ngUnsubscribe)).subscribe(data => {
+    this.facade.buscarTodos().pipe(takeUntil(this.ngUnsubscribe)).subscribe(data => {
       updateGrid(this.gridOptions,data,this.gridColumnApi,true,true);
     });;
   }
@@ -106,10 +106,14 @@ export class CursoComponent implements OnInit, AfterViewInit, OnDestroy, AfterVi
 
   cargarArchivo(){
     this.configCarga.loading = true;
-    this.cursoFacade.buscarTodos().pipe(takeUntil(this.ngUnsubscribe)).subscribe(data => {
+    this.facade.cargar(this.files).pipe(takeUntil(this.ngUnsubscribe)).subscribe(data => {
       this.toasterService.success(MESSAGE_BODY_CARGA_SUCCESS, MESSAGE_TITLE_CARGA_SUCCESS);
       this.configCarga.loading = false;
-    });;
+      this.md.hide();
+      this.facade.buscarTodos().pipe(takeUntil(this.ngUnsubscribe)).subscribe(data => {
+        updateGrid(this.gridOptions,data,this.gridColumnApi,true,true);
+      });
+    });
   }
 
   initColumnDefs(): ColDef[] {
