@@ -27,4 +27,7 @@ export class AsignacionEspaciosFacade {
     this.store.dispatch(new UpdateAsignacionEspacios(form));
   }
 
+  procesarAsignacion(): Observable<any>{
+    return this.service.procesarAsignacion();
+  }
 }

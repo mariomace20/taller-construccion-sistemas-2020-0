@@ -17,7 +17,7 @@ export class AsignacionEspaciosService extends HttpService {
   ) {
     let path;
     store.select('globalData').subscribe(data => path = data.pathEndpoints.MANT_GENERAL);
-    super(injector, httpClient, `${path}curso`);
+    super(injector, httpClient, `${path}asignacion-espacios`);
   }
 
   buscarTodos(): Observable<any>  {
@@ -26,6 +26,10 @@ export class AsignacionEspaciosService extends HttpService {
 
   actualizar(data: any): Observable<any>  {
     return super.put(data, data.id);
+  }
+
+  procesarAsignacion(): Observable<any>  {
+    return super.get('/procesar');
   }
 
 

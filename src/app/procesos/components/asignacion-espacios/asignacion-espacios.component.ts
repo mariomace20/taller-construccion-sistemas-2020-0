@@ -34,6 +34,9 @@ export class AsignacionEspaciosComponent implements OnInit, AfterViewInit, OnDes
   gridApi: GridApi;
   private gridColumnApi;
   templateHtmlMsg:string;
+
+  loading: boolean = false;
+
   constructor(
     private asignacionEspaciosFacade: AsignacionEspaciosFacade,
     private toastr: ToastrService,
@@ -111,6 +114,15 @@ export class AsignacionEspaciosComponent implements OnInit, AfterViewInit, OnDes
     enableControls(this.form, false, 'matriculados');
     enableControls(this.form, false, 'tipoHorario');
     this.mdSave.show(data, RESOURCE_ACTIONS.ACTUALIZACION);
+  }
+
+  procesarAsignacion(){
+    this.loading = true;
+    this.asignacionEspaciosFacade.procesarAsignacion().pipe(takeUntil(this.ngUnsubscribe)).subscribe((data) => {
+      this.loading = false;
+      updateGrid(this.gridOptions, data, this.gridColumnApi);
+      this.toastr.success('Realizado con exito','Asignación de espacios');
+    });
   }
 
   save() {

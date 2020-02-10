@@ -11,9 +11,11 @@ import { PermissionsService } from '../../services';
 export class TemplateMantenimientoComponent implements OnInit {
   @Input() type: Type;
   @Input() detailType: Type;
+  @Input() loading: boolean = false;
   @Output() clickRegisterBtn?: EventEmitter<any> = new EventEmitter<any>();
   @Output() clickExportBtn?: EventEmitter<any> = new EventEmitter<any>();
   @Output() clickCargaBtn?: EventEmitter<any> = new EventEmitter<any>();
+  @Output() clickProcesarBtn?: EventEmitter<any> = new EventEmitter<any>();
 
   acciones: string[];
   accionesDetalle: string[];
@@ -23,7 +25,7 @@ export class TemplateMantenimientoComponent implements OnInit {
   permisoExportacion: boolean = false;
   permisoConsulta: boolean = false;
   permisoEliminacion: boolean = false;
-  permisoProcesar: boolean = false; 
+  permisoProcesar: boolean = false;
 
   permisoConsultaDetalle: boolean = false;
   permisoRegistroDetalle: boolean = false;
@@ -59,6 +61,10 @@ export class TemplateMantenimientoComponent implements OnInit {
 
   onClickExport(){
     this.clickExportBtn.emit();
+  }
+
+  onClickProcesar(){
+    this.clickProcesarBtn.emit();
   }
 
   disableDownloadBtn(disable: boolean){
