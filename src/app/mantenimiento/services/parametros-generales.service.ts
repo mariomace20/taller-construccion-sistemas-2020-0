@@ -17,7 +17,7 @@ export class ParametrosGeneralesService extends HttpService {
   ) {
     let path;
     store.select('globalData').subscribe(data => path = data.pathEndpoints.MANT_GENERAL);
-    super(injector, httpClient, `${path}parametros-generales`);
+    super(injector, httpClient, `${path}parametros-sistema`);
   }
 
   buscarTodos(): Observable<any>  {

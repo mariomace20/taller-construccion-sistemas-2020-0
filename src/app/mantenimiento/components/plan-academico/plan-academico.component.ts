@@ -122,34 +122,34 @@ export class PlanAcademicoComponent implements OnInit, AfterViewInit, OnDestroy,
       },
       {
         headerName: "Descripción",
-        field: 'descripcion',
+        field: 'descripcionPlan',
         cellClass: 'ob-type-string',
         filter: 'agTextColumnFilter',
         filterParams: { newRowsAction: "keep" }
       },
       {
         headerName: "Facultad",
-        field: "idFacultad",
+        field: "facultad",
         cellClass: 'ob-type-string-center',
         filter: 'agTextColumnFilter',
         valueGetter: (params) => {
-          return !params.data ? '' : joinWords(DEFAULT_SEPARATOR, params.data.idFacultad, params.data.descripcionFacultad);
+          return !params.data ? '' : joinWords(DEFAULT_SEPARATOR, params.data.facultad, params.data.descripcionFacultad);
         },
         filterParams: { newRowsAction: "keep" },
       },
       {
         headerName: "Escuela",
-        field: "idEscuela",
+        field: "escuela",
         cellClass: 'ob-type-string-center',
         filter: 'agTextColumnFilter',
         valueGetter: (params) => {
-          return !params.data ? '' : joinWords(DEFAULT_SEPARATOR, params.data.idEscuela, params.data.descripcionEscuela);
+          return !params.data ? '' : joinWords(DEFAULT_SEPARATOR, params.data.escuela, params.data.descripcionEscuela);
         },
         filterParams: { newRowsAction: "keep" },
       },
       {
         headerName: "Especialidad",
-        field: "especialidad",
+        field: "descripcionEspecialidad",
         cellClass: 'ob-type-string-center',
         filter: 'agTextColumnFilter',
         filterParams: { newRowsAction: "keep" },

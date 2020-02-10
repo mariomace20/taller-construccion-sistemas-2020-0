@@ -17,7 +17,7 @@ export class DocenteService extends HttpService {
   ) {
     let path;
     store.select('globalData').subscribe(data => path = data.pathEndpoints.MANT_GENERAL);
-    super(injector, httpClient, `${path}curso`);
+    super(injector, httpClient, `${path}docente`);
   }
 
   buscarTodos(): Observable<any>  {

@@ -17,7 +17,7 @@ export class PlanAcademicoService extends HttpService {
   ) {
     let path;
     store.select('globalData').subscribe(data => path = data.pathEndpoints.MANT_GENERAL);
-    super(injector, httpClient, `${path}plan-academico`);
+    super(injector, httpClient, `${path}planes`);
   }
 
   buscarTodos(): Observable<any>  {
