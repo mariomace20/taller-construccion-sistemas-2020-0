@@ -7,7 +7,7 @@
   ></ag-grid-angular>
 </app-template-mantenimiento>
 
-<app-form-modal [options]="mdFormOpts" (onSubmit)="save()" [form]="form" #mdSave>
+<app-form-modal [options]="mdFormOpts" [form]="form" #mdSave>
   <div class="row col-12">
     <div class="col-8">
       <div class="col-12">
@@ -68,62 +68,36 @@
         <fieldset class="well" style="background-color: #F5F5F5">
           <legend class="well-legend"> <i class="fa fa-file-text-o" aria-hidden="true"></i> Agregar solicitud </legend>
           <div class="form-group row">
-            <label class="col-sm-2 col-md-2 col-lg-2 ob-custom-label-form">Periodo</label>
+            <label class="col-sm-2 col-md-2 col-lg-2 ob-custom-label-form">Tipo</label>
             <div class="col-sm-10 col-md-10 col-lg-10">
-              <input type="number" class="form-control" formControlName="periodo">
-              <bfv-messages></bfv-messages>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-sm-2 col-md-2 col-lg-2 ob-custom-label-form">Ciclo</label>
-            <div class="col-sm-10 col-md-10 col-lg-10">
-              <input type="number" class="form-control" formControlName="ciclo">
-              <bfv-messages></bfv-messages>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-sm-2 col-md-2 col-lg-2 ob-custom-label-form">Curso</label>
-            <div class="col-sm-10 col-md-10 col-lg-10">
-              <input type="number" class="form-control" formControlName="curso">
-              <bfv-messages></bfv-messages>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-sm-2 col-md-2 col-lg-2 ob-custom-label-form">Matriculados</label>
-            <div class="col-sm-10 col-md-10 col-lg-10">
-              <input type="number" class="form-control" formControlName="matriculados">
-              <bfv-messages></bfv-messages>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-sm-2 col-md-2 col-lg-2 ob-custom-label-form">Tipo Horario</label>
-            <div class="col-sm-10 col-md-10 col-lg-10">
-              <input type="number" class="form-control" formControlName="tipoHorario">
-              <bfv-messages></bfv-messages>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-sm-2 col-md-2 col-lg-2 ob-custom-label-form">Pabellón</label>
-            <div class="col-sm-10 col-md-10 col-lg-10">
-              <ng-select #pabellonSelect [items]="pabellones" class="ng-select-custom" bindLabel="label"
-                bindValue="idPabellon" placeholder="TODOS" [notFoundText]="'No hay datos encontrados.'"
-                formControlName="idPabellon">
+              <ng-select #pabellonSelect [items]="tipoSolicitudes" class="ng-select-custom" bindLabel="label" bindValue="idTipoSolicitud"
+                placeholder="TODOS" [notFoundText]="'No hay datos encontrados.'"
+                formControlName="tipoSolicitud">
               </ng-select>
+              <bfv-messages></bfv-messages>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-2 col-md-2 col-lg-2 ob-custom-label-form">Espacio Académico</label>
+            <label class="col-sm-2 col-md-2 col-lg-2 ob-custom-label-form">Solicitante</label>
             <div class="col-sm-10 col-md-10 col-lg-10">
-              <ng-select #pabellonSelect [items]="espaciosAcademico" class="ng-select-custom" bindLabel="label"
-                bindValue="idEspacioAcademico" placeholder="TODOS" [notFoundText]="'No hay datos encontrados.'"
-                formControlName="idEspacioAcademico">
+              <ng-select #pabellonSelect [items]="solicitantes" class="ng-select-custom" bindLabel="label" bindValue="idSolicitante"
+                placeholder="TODOS" [notFoundText]="'No hay datos encontrados.'"
+                formControlName="solicitante">
               </ng-select>
+              <bfv-messages></bfv-messages>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-md-2 col-lg-2 ob-custom-label-form">Motivo</label>
+            <div class="col-sm-10 col-md-10 col-lg-10">
+              <textarea  rows="5" class="form-control" formControlName="motivo"></textarea>
+              <bfv-messages></bfv-messages>
             </div>
           </div>
           <div class="form-group row">
             <div class="col-lg-12 text-center">
               <button type="submit" class="btn btn-success" [disabled]="prestando">
-                <i class="fa" [ngClass]="{'fa-spinner fa-pulse fa-fw': prestando  , 'fa-search': !prestando}"></i> Prestar
+                <i class="fa" [ngClass]="{'fa-spinner fa-pulse fa-fw': prestando  , 'fa-check': !prestando}"></i> Agregar solicitud
               </button>
             </div>
           </div>

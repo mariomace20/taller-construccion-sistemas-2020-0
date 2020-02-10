@@ -64,13 +64,9 @@ export class SolicitudEspaciosComponent implements OnInit, AfterViewInit, OnDest
     this.mdUpdateOpts.modalClass = 'modal-reglas-compensacion';
     this.mdRegisterOpts.buttons.ok.hidden = true;
     this.form = new FormGroup({
-      'periodo': new FormControl('', [Validators.required ,Validators.min(0), Validators.min(0), Validators.max(99)]),
-      'ciclo': new FormControl('', [Validators.required, Validators.maxLength(30)]),
-      'curso': new FormControl('', [Validators.required, Validators.maxLength(30)]),
-      'matriculados': new FormControl('', [Validators.required, Validators.maxLength(30)]),
-      'tipoHorario': new FormControl('', [Validators.required, Validators.maxLength(30)]),
-      'idPabellon': new FormControl('', [Validators.required, Validators.maxLength(30)]),
-      'idEspacioAcademico': new FormControl('', [Validators.required, Validators.maxLength(30)]),
+      'tipoSolicitud': new FormControl('', [Validators.required ,Validators.min(0), Validators.min(0), Validators.max(99)]),
+      'solicitante': new FormControl('', [Validators.required, Validators.maxLength(30)]),
+      'motivo': new FormControl('', [Validators.required, Validators.maxLength(30)]),
     });
     this.formHorario = new FormGroup({
       'pabellon': new FormControl('', [Validators.required ,Validators.min(0), Validators.min(0), Validators.max(99)]),
@@ -136,98 +132,59 @@ export class SolicitudEspaciosComponent implements OnInit, AfterViewInit, OnDest
     });
   }
 
-  showMdUpdate(params){
-    let data: any = params.node.data;
-    this.mdFormOpts = this.mdUpdateOpts;
-    enableControls(this.form, false, 'periodo');
-    enableControls(this.form, false, 'ciclo');
-    enableControls(this.form, false, 'curso');
-    enableControls(this.form, false, 'matriculados');
-    enableControls(this.form, false, 'tipoHorario');
-    this.mdSave.show(data, RESOURCE_ACTIONS.ACTUALIZACION);
-  }
 
   abrirModalRegistrar(){
-    /*this.loading = true;
-    this.solicitudEspaciosFacade.registrar().pipe(takeUntil(this.ngUnsubscribe)).subscribe((data) => {
-      this.loading = false;
-      updateGrid(this.gridOptions, data, this.gridColumnApi);
-      this.toastr.success('Realizado con exito','Asignación de espacios');
-    });*/
     this.mdSave.show({});
-  }
-
-  save() {
-    const action = this.mdSave.action;
-    switch (action) {
-      case RESOURCE_ACTIONS.ACTUALIZACION:
-        this.solicitudEspaciosFacade.actualizar(this.form.getRawValue());
-        break;
-    }
   }
 
   initColumnDefs(): ColDef[] {
     return [
       {
-        headerName: "Periodo",
-        field: "idPeriodo",
+        headerName: "Tipo",
+        field: "tipoSolicitud",
         cellClass: 'ob-type-string-center',
         filter: 'agTextColumnFilter',
         filterParams: { newRowsAction: "keep" },
 
       },
       {
-        headerName: "Ciclo",
-        field: 'ciclo',
+        headerName: "Espacio",
+        field: 'espacioAcademico',
         cellClass: 'ob-type-string',
         filter: 'agTextColumnFilter',
         filterParams: { newRowsAction: "keep" }
       },
       {
-        headerName: "Sección",
-        field: 'seccion',
+        headerName: "Estado",
+        field: 'estado',
         cellClass: 'ob-type-string',
         filter: 'agTextColumnFilter',
         filterParams: { newRowsAction: "keep" }
       },
       {
-        headerName: "Docente",
-        field: 'docente',
+        headerName: "DNI",
+        field: 'dni',
         cellClass: 'ob-type-string',
         filter: 'agTextColumnFilter',
         filterParams: { newRowsAction: "keep" }
       },
       {
-        headerName: "Tope",
-        field: 'tope',
+        headerName: "Solicitante",
+        field: 'solicitante',
         cellClass: 'ob-type-string',
         filter: 'agTextColumnFilter',
         filterParams: { newRowsAction: "keep" }
       },
       {
-        headerName: "Matriculados",
-        field: 'matriculados',
+        headerName: "Registro",
+        field: 'registro',
         cellClass: 'ob-type-string',
         filter: 'agTextColumnFilter',
         filterParams: { newRowsAction: "keep" }
       },
       {
-        headerName: "Turno",
-        field: 'turno',
-        cellClass: 'ob-type-string',
-        filter: 'agTextColumnFilter',
-        filterParams: { newRowsAction: "keep" }
-      },
-      {
-        headerName: "Tipo Horario",
-        field: 'tipoHorario',
-        cellClass: 'ob-type-string',
-        filter: 'agTextColumnFilter',
-        filterParams: { newRowsAction: "keep" }
-      },
-      {
-        headerName: "Día",
-        field: 'tipoHorario',
+        headerName: "Reserva",
+        field: 'reserva',
         cellClass: 'ob-type-string',
         filter: 'agTextColumnFilter',
         filterParams: { newRowsAction: "keep" }
@@ -245,26 +202,6 @@ export class SolicitudEspaciosComponent implements OnInit, AfterViewInit, OnDest
         cellClass: 'ob-type-string',
         filter: 'agTextColumnFilter',
         filterParams: { newRowsAction: "keep" }
-      },
-      {
-        headerName: "Espacio",
-        field: 'espacioAcademico',
-        cellClass: 'ob-type-string',
-        filter: 'agTextColumnFilter',
-        filterParams: { newRowsAction: "keep" }
-      },
-      {
-        headerName: 'Acción',
-        cellStyle: { 'text-align': "center" },
-        cellRendererFramework: ButtonsCellRendererComponent,
-        cellRendererParams: {
-          edit: {
-            visible: this.template.permisoActualizacion,
-            action: this.showMdUpdate.bind(this)
-          }
-        },
-        filter: false,
-        sortable: false
       }
     ];
   }
