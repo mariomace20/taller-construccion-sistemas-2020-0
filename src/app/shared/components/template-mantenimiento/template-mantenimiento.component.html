@@ -17,7 +17,7 @@
               <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;
               {{type.name}}
             </button>
-            <button *ngIf="permisoProcesar" class="btn btn-success" (click)="onClickProcesar()">
+            <button *ngIf="permisoProcesar" class="btn btn-success" (click)="onClickProcesar()" [disabled]="loading">
               <i class="fa" [ngClass]="loading ? 'fa-spinner fa-pulse fa-fw' : type.btnIcon"></i>&nbsp;
               {{type.btnText}}
             </button>
