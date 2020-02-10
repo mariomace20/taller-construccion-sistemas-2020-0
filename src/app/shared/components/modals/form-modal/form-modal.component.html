@@ -7,7 +7,7 @@
     </fieldset>
     <div class="pull-right" style="margin-right: 16px;">
       <button type="submit" style="margin-left: 10px;" [disabled]="options.buttons.ok.disabled"
-        class="btn"
+        class="btn" [hidden]="options.buttons.ok.hidden"
         [ngClass]="[options.buttons.ok.class ? options.buttons.ok.class : 'btn-primary' ]">
         {{options.buttons.ok.text}}
       </button>

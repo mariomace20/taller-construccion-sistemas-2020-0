@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 import { SolicitudEspaciosRoutingModule } from './solicitud-espacios-routing.module';
 import { SolicitudEspaciosComponent } from './solicitud-espacios.component';
 import { SharedModule } from '../../../shared/shared.module';
-import { AsignacionEspaciosFacade } from '../../facade';
+import { SolicitudEspaciosFacade } from '../../facade';
 import { ObGridModule } from '../../../shared/ob-grid.module';
+import { ObDatepickerModule } from '../../../shared/ob-datepicker.module';
 
 @NgModule({
   declarations: [SolicitudEspaciosComponent],
@@ -12,10 +13,11 @@ import { ObGridModule } from '../../../shared/ob-grid.module';
     CommonModule,
     SharedModule,
     ObGridModule,
+    ObDatepickerModule,
     SolicitudEspaciosRoutingModule
   ],
   providers: [
-    AsignacionEspaciosFacade
+    SolicitudEspaciosFacade
   ]
 })
 export class SolicitudEspaciosModule { }

@@ -30,12 +30,21 @@ export class SolicitudEspaciosComponent implements OnInit, AfterViewInit, OnDest
   mdUpdateOpts: MdFormOpts;
   mdFormOpts: MdFormOpts;
   form:FormGroup;
+  formHorario:FormGroup;
   gridOptions: GridOptions;
   gridApi: GridApi;
   private gridColumnApi;
+
+
+  gridOptionsHorario: GridOptions;
+  gridApiHorario: GridApi;
+  private gridColumnApiHorario;
+
   templateHtmlMsg:string;
 
   loading: boolean = false;
+  buscando: boolean = false;
+  prestando: boolean = false;
 
   constructor(
     private solicitudEspaciosFacade: SolicitudEspaciosFacade,
@@ -51,6 +60,9 @@ export class SolicitudEspaciosComponent implements OnInit, AfterViewInit, OnDest
     this.mdConfirmOpts = configFormMd.getDeleteMdOpts(this.templateHtmlMsg);
     this.mdRegisterOpts = configFormMd.getRegisterMdOpts(this.type);
     this.mdUpdateOpts = configFormMd.getUpdateMdOpts(this.type);
+    this.mdRegisterOpts.modalClass = 'modal-reglas-compensacion';
+    this.mdUpdateOpts.modalClass = 'modal-reglas-compensacion';
+    this.mdRegisterOpts.buttons.ok.hidden = true;
     this.form = new FormGroup({
       'periodo': new FormControl('', [Validators.required ,Validators.min(0), Validators.min(0), Validators.max(99)]),
       'ciclo': new FormControl('', [Validators.required, Validators.maxLength(30)]),
@@ -59,6 +71,11 @@ export class SolicitudEspaciosComponent implements OnInit, AfterViewInit, OnDest
       'tipoHorario': new FormControl('', [Validators.required, Validators.maxLength(30)]),
       'idPabellon': new FormControl('', [Validators.required, Validators.maxLength(30)]),
       'idEspacioAcademico': new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    });
+    this.formHorario = new FormGroup({
+      'pabellon': new FormControl('', [Validators.required ,Validators.min(0), Validators.min(0), Validators.max(99)]),
+      'tipoEspacio': new FormControl('', [Validators.required, Validators.maxLength(30)]),
+      'fecha': new FormControl('', [Validators.required, Validators.maxLength(30)]),
     })
     this.mdFormOpts = this.mdRegisterOpts;
     this.gridOptions = {
@@ -74,7 +91,21 @@ export class SolicitudEspaciosComponent implements OnInit, AfterViewInit, OnDest
       getContextMenuItems: (params) => {
         return getContextMenuItemsMantenimiento(params,this.type,this.template.permisoExportacion);
       }
-    }
+    };
+    this.gridOptionsHorario = {
+      ...commonConfigTablaMantenimiento,
+      getRowNodeId: (data) => {
+        return data.idOrigen;
+      },
+      onGridReady: (params) => {
+        this.gridApiHorario = params.api;
+        this.gridColumnApiHorario = params.columnApi;
+        params.api.sizeColumnsToFit();
+      },
+      getContextMenuItems: (params) => {
+        return getContextMenuItemsMantenimiento(params,this.type,this.template.permisoExportacion);
+      }
+    };
   }
 
   ngAfterViewChecked() {

@@ -48,7 +48,7 @@ export const TYPES = {
   MENU_RECURSO: { name: 'Aisgnación de recursos', title: 'Asignación de recursos', resource: 'MANT_MEN_REC', module: MODULE.SEGURIDAD },
   /*Procesos*/
   ASIG_ESPACIOS: { name: 'Aisgnación de espacios', otherTitle: 'Asignación de espacios', btnText:'Asignar', btnIcon:'fa-bolt', title: 'Asignación de espacios', resource: 'EJEC_ASIGESPACIOS', module: MODULE.PROCESOS },
-  SOLI_ESPACIOS: { name: 'Solicitud de espacios', otherTitle: 'Solicitud de espacios', btnText:'Consultar', btnIcon:'fa-eye', title: 'Solicitud de espacios', resource: 'EJEC_SOLIESPACIOS', module: MODULE.PROCESOS }
+  SOLI_ESPACIOS: { name: 'Solicitud de espacios', otherTitle: 'Solicitud de espacios', btnText:'Prestar', btnIcon:'fa-bolt', title: 'Solicitud de espacios', resource: 'EJEC_SOLIESPACIOS', module: MODULE.PROCESOS }
 };
 
 export const RESOURCE_ACTIONS = {

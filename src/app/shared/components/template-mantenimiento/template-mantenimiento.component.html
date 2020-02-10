@@ -18,7 +18,7 @@
               {{type.name}}
             </button>
             <button *ngIf="permisoProcesar" class="btn btn-success" (click)="onClickProcesar()">
-              <i class="fa" [ngClass]="{'fa-spinner fa-pulse fa-fw': loading  , type.btnIcon: !loading}"></i>&nbsp;
+              <i class="fa" [ngClass]="loading ? 'fa-spinner fa-pulse fa-fw' : type.btnIcon"></i>&nbsp;
               {{type.btnText}}
             </button>
             <!--<button *ngIf="permisoExportacion" class="btn btn-success" [disabled]="downloading"

@@ -6,7 +6,7 @@ import { resetForm } from '../../../utils';
 export interface MdFormOpts {
   title: string,
   buttons: {
-    ok: { text: string, class?: string, disabled: boolean },
+    ok: { text: string, class?: string, disabled: boolean, hidden?: boolean },
     cancel?: { text: string, class?: string }
   },
   modalClass?: string
@@ -21,7 +21,7 @@ export class FormModalComponent implements OnInit {
   @Input() options: MdFormOpts = {
     title: 'Título',
     buttons: {
-      ok: { text: 'Ok', disabled: false },
+      ok: { text: 'Ok', disabled: false, hidden: false },
       cancel: { text: 'Cancelar', class: 'btn-secondary' }
     },
     modalClass: 'modal-mantenimientos'
