@@ -23,6 +23,12 @@ export const navItems: NavData[] = [
     icon: 'fa fa-table nivel-0',
     children: [
       {
+      name: 'Solicitantes',
+      icon: 'fa fa-table nivel-1',
+      url: '/mantenimiento/solicitante',
+      permissions: ['MANT_SOLICITANTE']
+      },
+      {
         name: 'Docentes',
         icon: 'fa fa-table nivel-1',
         url: '/mantenimiento/docente',
@@ -57,7 +63,12 @@ export const navItems: NavData[] = [
         icon: 'fa fa-table nivel-1',
         url: '/mantenimiento/programacion-academica',
         permissions: ['MANT_PROGACEDEMICA']
-      },
+      },{
+      name: 'Espacio Académico',
+      icon: 'fa fa-table nivel-1',
+      url: '/mantenimiento/espacio-academico',
+      permissions: ['MANT_ESPACIO_ACADEMICO']
+      }
     ]
   },
   {
