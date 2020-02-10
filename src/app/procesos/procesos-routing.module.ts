@@ -9,7 +9,7 @@ const routes: Routes = [
     children: [
       {
         path: 'asignacion-espacios',
-        loadChildren: './components/asignacion-espacios/asignacion-espacios.module#CursoModule'
+        loadChildren: './components/asignacion-espacios/asignacion-espacios.module#AsignacionEspaciosModule'
       },
     ],
     data: {

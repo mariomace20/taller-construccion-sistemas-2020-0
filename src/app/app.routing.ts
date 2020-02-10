@@ -39,6 +39,11 @@ export const routes: Routes = [
         path: 'consulta',
         loadChildren: './consultas/consulta.module#ConsultaModule',
         //canActivate: [AuthGuard]
+      },
+      {
+        path: 'procesos',
+        loadChildren: './procesos/procesos.module#ProcesosModule',
+        //canActivate: [AuthGuard]
       }
     ]
   },

@@ -14,7 +14,7 @@ import { takeUntil } from 'rxjs/operators';
 import { PermissionsService } from '../../../services';
 import { ParametrosGeneralesFacade } from '../../../../mantenimiento/facade/parametros-generales.facade';
 //import { GetAllParametroSistema } from '../../../store/actions/mantenimiento/parametro-sistema.actions';
-import { UpdatePage } from '../../../store/actions/help.actions';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-dashboard',
@@ -53,6 +53,8 @@ export class LayoutComponent implements OnDestroy, OnInit, AfterViewInit {
   public fechaProceso: Date;
   public loadingFecha: boolean = false;
 
+  periodo: string = null;
+
   //public componenteActual: any;
 
   form:FormGroup;
@@ -62,6 +64,7 @@ export class LayoutComponent implements OnDestroy, OnInit, AfterViewInit {
     private router: Router,
     private permissionsService: PermissionsService,
     private parametrosGeneralesFacade: ParametrosGeneralesFacade,
+    private toasterService: ToastrService,
     private renderer: Renderer2,
     @Inject(SEC_AUTH) private auth: boolean,
     @Inject(DOCUMENT) _document?: any
@@ -93,6 +96,10 @@ export class LayoutComponent implements OnDestroy, OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.contractSidebarItems();
+    this.parametrosGeneralesFacade.buscarTodos().pipe(takeUntil(this.ngUnsubscribe)).subscribe(data => {
+      console.log(data);
+      this.periodo = data.periodo;
+    });
   }
 
   ngOnDestroy(): void {
@@ -178,7 +185,10 @@ export class LayoutComponent implements OnDestroy, OnInit, AfterViewInit {
   }
 
   guardarParametros(){
-    this.parametrosGeneralesFacade.registrar(this.form.getRawValue());
+    this.parametrosGeneralesFacade.registrar(this.form.getRawValue()).pipe(takeUntil(this.ngUnsubscribe)).subscribe(data => {
+      this.toasterService.success('Realizado con exito','Actualización')
+      this.md.hide();
+    });
   }
 
 }

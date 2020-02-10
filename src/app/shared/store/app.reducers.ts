@@ -27,6 +27,8 @@ import * as fromPerfilSeg from './reducers/seguridad/perfil.reducer';
 import * as fromUsuarioPerfilSeg from './reducers/seguridad/usuario-perfil.reducer';
 import * as fromAsignacionPermisos from './reducers/seguridad/asignacion-permisos.reducer';
 import * as fromRecursoAsignacionGrilla from './reducers/seguridad/asignacion-permisos-grilla.reducer';
+/*Procesos*/
+import * as fromAsignacionEspacios from './reducers/procesos/asignacion-espacios.reducer';
 
 /* Mantenimientos */
 import {
@@ -88,6 +90,8 @@ export interface AppState {
   usuariosPerfilesSeg: State<UsuarioPerfil>,
   asignacionPermisos: State<PerfilMenuRecursoNodo>,
   asignacionPermisosGrilla: fromRecursoAsignacionGrilla.RecursoAsignacionState,
+  // Procesos
+  asignacionEspacios: State<any>,
 }
 
 export const appReducers: ActionReducerMap<AppState> = {
@@ -100,7 +104,7 @@ export const appReducers: ActionReducerMap<AppState> = {
   solicitantes: fromSolicitante.solicitanteReducer,
   espaciosAcademico: fromEspacioAcademico.espacioAcademicoReducer,
   multitabCabs: fromMultitabCab.multitabCabReducer,
-multitabDets: fromMultitabDet.multitabDetReducer,
+  multitabDets: fromMultitabDet.multitabDetReducer,
   // Consultas
   compensaciones: fromCompensacion.consultaCompensacionReducer,
   // Seguridad
@@ -118,4 +122,5 @@ multitabDets: fromMultitabDet.multitabDetReducer,
   usuariosPerfilesSeg: fromUsuarioPerfilSeg.usuarioPerfilReducer,
   asignacionPermisos: fromAsignacionPermisos.asignacionPermisosReducer,
   asignacionPermisosGrilla: fromRecursoAsignacionGrilla.asignacionPermisosGrillaReducer,
+  asignacionEspacios: fromAsignacionEspacios.asignacionEspaciosReducer,
 };

@@ -66,6 +66,7 @@ export class CursoComponent implements OnInit, AfterViewInit, OnDestroy, AfterVi
 
   ngAfterViewInit(){
     this.template.permisoRegistro = false;
+    this.template.permisoProcesar = false;
     this.template.permisoCarga = true;
     this.template.permisoExportacion = true;
     this.gridOptions.api.setColumnDefs(this.initColumnDefs());

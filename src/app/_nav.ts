@@ -67,7 +67,7 @@ export const navItems: NavData[] = [
       {
         name: 'Asignación de espacios',
         icon: 'fa fa-table nivel-1',
-        url: '/proceso/asignacion-espacios',
+        url: '/procesos/asignacion-espacios',
         permissions: ['EJEC_ASIGESPAC']
       },
     ]

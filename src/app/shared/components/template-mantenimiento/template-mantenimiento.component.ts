@@ -23,6 +23,7 @@ export class TemplateMantenimientoComponent implements OnInit {
   permisoExportacion: boolean = false;
   permisoConsulta: boolean = false;
   permisoEliminacion: boolean = false;
+  permisoProcesar: boolean = false; 
 
   permisoConsultaDetalle: boolean = false;
   permisoRegistroDetalle: boolean = false;

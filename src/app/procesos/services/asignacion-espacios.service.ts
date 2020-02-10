@@ -24,6 +24,10 @@ export class AsignacionEspaciosService extends HttpService {
     return super.get();
   }
 
+  actualizar(data: any): Observable<any>  {
+    return super.put(data, data.id);
+  }
+
 
 
 }

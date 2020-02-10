@@ -12,6 +12,10 @@ export class ParametrosGeneralesFacade {
     private service: ParametrosGeneralesService
   ){}
 
+  buscarTodos(): Observable<any>{
+    return this.service.buscarTodos();
+  }
+
   registrar(form: any): Observable<any>{
     return this.service.registrar(form);
   }

@@ -3,6 +3,9 @@ import { AppState } from '../../shared/store/app.reducers';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AsignacionEspaciosService } from '../services';
+import { GetAllAsignacionEspacios } from '../../shared/store/actions/procesos/asignacion-espacios.actions';
+import { UpdateAsignacionEspacios } from '../../shared/store/actions/procesos/asignacion-espacios.actions';
+
 
 @Injectable()
 export class AsignacionEspaciosFacade {
@@ -14,6 +17,14 @@ export class AsignacionEspaciosFacade {
 
   buscarTodos(): Observable<any>{
     return this.service.buscarTodos();
+  }
+
+  initData(){
+    this.store.dispatch(new GetAllAsignacionEspacios());
+  }
+
+  actualizar(form: any){
+    this.store.dispatch(new UpdateAsignacionEspacios(form));
   }
 
 }

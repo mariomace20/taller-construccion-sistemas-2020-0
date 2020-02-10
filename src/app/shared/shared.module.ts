@@ -47,6 +47,7 @@ import { TemplateMantenimientoDetalleComponent } from './components/template-man
 import { DisableControlDirective } from "./directives/disable-control.directive";
 import { TemplateSimpleComponent } from './components/template-simple/template-simple.component';
 import { QueryBuilderModule } from 'angular2-query-builder';
+import { ParametrosGeneralesFacade } from '../mantenimiento/facade/parametros-generales.facade';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -147,6 +148,7 @@ const DIRECTIVES = [
   providers: [
     AuthGuard,
     CookieService,
+    ParametrosGeneralesFacade,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpConfigInterceptor,

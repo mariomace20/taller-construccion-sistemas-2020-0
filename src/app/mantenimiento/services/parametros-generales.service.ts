@@ -20,6 +20,10 @@ export class ParametrosGeneralesService extends HttpService {
     super(injector, httpClient, `${path}parametros-generales`);
   }
 
+  buscarTodos(): Observable<any>  {
+    return super.get();
+  }
+
   registrar(form: any): Observable<any>  {
     return super.post(form);
   }

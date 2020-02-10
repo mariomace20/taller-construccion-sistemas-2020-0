@@ -9,4 +9,4 @@ import { ProcesosRoutingModule } from './procesos-routing.module';
     ProcesosRoutingModule
   ]
 })
-export class MantenimientoModule { }
+export class ProcesosModule { }
