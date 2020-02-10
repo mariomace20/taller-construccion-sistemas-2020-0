@@ -135,13 +135,6 @@ export class HorarioComponent implements OnInit, AfterViewInit, OnDestroy, After
         filterParams: { newRowsAction: "keep" },
       },
       {
-        headerName: "Dia",
-        field: 'dia',
-        cellClass: 'ob-type-string',
-        filter: 'agTextColumnFilter',
-        filterParams: { newRowsAction: "keep" }
-      },
-      {
         headerName: "Inicio",
         field: 'horarioInicio',
         cellClass: 'ob-type-string',

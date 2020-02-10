@@ -119,7 +119,7 @@ export class ProgramacionAcademicaComponent implements OnInit, AfterViewInit, On
     return [
       {
         headerName: "Curso",
-        field: "idFacultad",
+        field: "idCurso",
         cellClass: 'ob-type-string',
         filter: 'agTextColumnFilter',
         valueGetter: (params) => {
