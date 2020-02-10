@@ -11,6 +11,10 @@ const routes: Routes = [
         path: 'asignacion-espacios',
         loadChildren: './components/asignacion-espacios/asignacion-espacios.module#AsignacionEspaciosModule'
       },
+      {
+        path: 'solicitud-espacios',
+        loadChildren: './components/solicitud-espacios/solicitud-espacios.module#SolicitudEspaciosModule'
+      },
     ],
     data: {
       title: 'Procesos'
