@@ -1,4 +1,4 @@
-import { HttpService } from '../../shared';
+import { HttpService } from '../../shared/services/http/http.service';
 import { Injectable, Injector } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngrx/store';
@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ProgramacionAcademicaService extends HttpService {
+export class PlanAcademicoService extends HttpService {
 
   constructor(
     injector: Injector,
@@ -17,7 +17,7 @@ export class ProgramacionAcademicaService extends HttpService {
   ) {
     let path;
     store.select('globalData').subscribe(data => path = data.pathEndpoints.MANT_GENERAL);
-    super(injector, httpClient, `${path}programacion-academica`);
+    super(injector, httpClient, `${path}plan-academico`);
   }
 
   buscarTodos(): Observable<any>  {

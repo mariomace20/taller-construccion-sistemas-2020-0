@@ -1,4 +1,4 @@
-import { HttpService } from '../../shared';
+import { HttpService } from '../../shared/services/http/http.service';
 import { Injectable, Injector } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AppState } from '../../shared/store/app.reducers';
@@ -13,7 +13,7 @@ import { FILE_EXT } from '../../shared/utils';
 export class MultitabCabService extends HttpService {
 
   constructor(
-    injector: Injector, 
+    injector: Injector,
     httpClient: HttpClient,
     store: Store<AppState>
   ){

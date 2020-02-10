@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AppState } from '../../shared/store/app.reducers';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { HorarioService } from '../services';
+import { HorarioService } from '../services/horario.service';
 
 @Injectable()
 export class HorarioFacade {

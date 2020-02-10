@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AppState } from '../../shared/store/app.reducers';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { ProgramacionAcademicaService } from '../services';
+import { ProgramacionAcademicaService } from '../services/programacion-academica.service';
 
 @Injectable()
 export class ProgramacionAcademicaFacade {

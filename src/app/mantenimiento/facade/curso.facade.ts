@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AppState } from '../../shared/store/app.reducers';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { CursoService } from '../services';
+import { CursoService } from '../services/curso.service';
 
 @Injectable()
 export class CursoFacade {

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AppState } from '../../shared/store/app.reducers';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { DetalleHorarioService } from '../services';
+import { DetalleHorarioService } from '../services/detalle-horario.service';
 
 @Injectable()
 export class DetalleHorarioFacade {

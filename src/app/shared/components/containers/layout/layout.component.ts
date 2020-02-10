@@ -5,7 +5,6 @@ import { AppState } from '../../../store/app.reducers';
 import { Store } from '@ngrx/store';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Logout } from '../../../store/actions/auth/auth.actions';
-//import { NavData } from '../../../../reportes/user/components/sidebar-tablas/_sidebar';
 import { Router } from '@angular/router';
 import { MdFormOpts } from '../../modals/form-modal/form-modal.component';
 import { ModalComponent } from '../../modals/modal/modal.component';
@@ -13,7 +12,7 @@ import { SEC_AUTH, TYPES, RESOURCE_ACTIONS } from '../../../utils';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { PermissionsService } from '../../../services';
-import { ParametrosGeneralesService } from '../../../../mantenimiento/services/parametros-generales.service';
+import { ParametrosGeneralesFacade } from '../../../../mantenimiento/facade/parametros-generales.facade';
 //import { GetAllParametroSistema } from '../../../store/actions/mantenimiento/parametro-sistema.actions';
 import { UpdatePage } from '../../../store/actions/help.actions';
 
@@ -29,7 +28,7 @@ export class LayoutComponent implements OnDestroy, OnInit, AfterViewInit {
   @ViewChild('md') md: ModalComponent;
 
   options: MdFormOpts = {
-    title: 'Parámetros',
+    title: 'Parámetros del Sistema',
     buttons: {
       ok: { text: 'Guardar', disabled: false },
       cancel: { text: 'Cancelar', class: 'btn-secondary' }
@@ -62,7 +61,7 @@ export class LayoutComponent implements OnDestroy, OnInit, AfterViewInit {
     private store: Store<AppState>,
     private router: Router,
     private permissionsService: PermissionsService,
-    private parametrosGeneralesService: ParametrosGeneralesService,
+    private parametrosGeneralesFacade: ParametrosGeneralesFacade,
     private renderer: Renderer2,
     @Inject(SEC_AUTH) private auth: boolean,
     @Inject(DOCUMENT) _document?: any
@@ -75,12 +74,12 @@ export class LayoutComponent implements OnDestroy, OnInit, AfterViewInit {
       attributes: true,
       attributeFilter: ['class']
     });
-    this.form = new FormGroup({
-      'periodo': new FormControl('', [Validators.required ,Validators.min(6), Validators.max(6), Validators.required]),
-    });
   }
 
   ngOnInit() {
+    this.form = new FormGroup({
+      'periodo': new FormControl('', [Validators.required ,Validators.minLength(6), Validators.maxLength(6), Validators.required]),
+    });
     this.store.select('globalData', 'infoApp').pipe(takeUntil(this.ngUnsubscribe)).subscribe(infoApp => this.infoApp = infoApp);
     this.store.select('auth', 'menuOptions').pipe(takeUntil(this.ngUnsubscribe)).subscribe(menuOptions => {
       this.navItems = this.auth ? menuOptions : navItems;
@@ -174,12 +173,12 @@ export class LayoutComponent implements OnDestroy, OnInit, AfterViewInit {
     //this.store.dispatch(new UpdatePage(this.componenteActual));
   }
 
-  abrirModalCambioFecha(){
+  abrirModalParametros(){
     this.md.show();
   }
 
   guardarParametros(){
-    this.parametrosGeneralesService.registrar(this.form.getRawValue());
+    this.parametrosGeneralesFacade.registrar(this.form.getRawValue());
   }
 
 }

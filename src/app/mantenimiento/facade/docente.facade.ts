@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AppState } from '../../shared/store/app.reducers';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { DocenteService } from '../services';
+import { DocenteService } from '../services/docente.service';
 
 @Injectable()
 export class DocenteFacade {

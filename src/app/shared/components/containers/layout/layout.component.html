@@ -83,7 +83,7 @@
   <span class="ml-auto">Versión {{infoApp.version}}</span>
 </app-footer>
 
-<app-form-modal [options]="options" (onSubmit)="guardarParametros()" #md>
+<app-form-modal [options]="options" (onSubmit)="guardarParametros()" [form]="form" #md>
   <div [formGroup]="form">
       <div class="form-group row">
         <label class="col-sm-2 col-md-2 col-lg-2 ob-custom-label-form">Periodo</label>

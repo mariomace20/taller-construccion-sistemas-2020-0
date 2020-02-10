@@ -1,4 +1,4 @@
-import { HttpService } from '../../shared';
+import { HttpService } from '../../shared/services/http/http.service';
 import { Injectable, Injector } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngrx/store';
