@@ -44,7 +44,7 @@ export class ProgramacionAcademicaComponent implements OnInit, AfterViewInit, On
     private toasterService: ToastrService,
     private cdRef : ChangeDetectorRef,
   ) {
-    this.type = TYPES.CURSO;
+    this.type = TYPES.PROGRAMACION_ACADEMICA;
   }
 
   ngOnInit() {
@@ -120,7 +120,7 @@ export class ProgramacionAcademicaComponent implements OnInit, AfterViewInit, On
       {
         headerName: "Curso",
         field: "idFacultad",
-        cellClass: 'ob-type-string-center',
+        cellClass: 'ob-type-string',
         filter: 'agTextColumnFilter',
         valueGetter: (params) => {
           return !params.data ? '' : joinWords(DEFAULT_SEPARATOR, params.data.idCurso, params.data.descripcionCurso);
@@ -137,24 +137,24 @@ export class ProgramacionAcademicaComponent implements OnInit, AfterViewInit, On
       {
         headerName: "Docente",
         field: "idDocente",
-        cellClass: 'ob-type-string-center',
+        cellClass: 'ob-type-string',
         filter: 'agTextColumnFilter',
         valueGetter: (params) => {
-          return !params.data ? '' : joinWords(DEFAULT_SEPARATOR, params.data.idDocente, params.data.descripcionDocente);
+          return !params.data ? '' : joinWords(DEFAULT_SEPARATOR, params.data.idDocente, params.data.nombresDocente);
         },
         filterParams: { newRowsAction: "keep" },
       },
       {
         headerName: "Tope",
         field: 'tope',
-        cellClass: 'ob-type-string',
+        cellClass: 'ob-type-number',
         filter: 'agTextColumnFilter',
         filterParams: { newRowsAction: "keep" }
       },
       {
         headerName: "Matriculados",
         field: 'matriculados',
-        cellClass: 'ob-type-string',
+        cellClass: 'ob-type-number',
         filter: 'agTextColumnFilter',
         filterParams: { newRowsAction: "keep" }
       },

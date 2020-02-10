@@ -136,9 +136,6 @@ export class PlanAcademicoComponent implements OnInit, AfterViewInit, OnDestroy,
         field: "facultad",
         cellClass: 'ob-type-string-center',
         filter: 'agTextColumnFilter',
-        valueGetter: (params) => {
-          return !params.data ? '' : joinWords(DEFAULT_SEPARATOR, params.data.facultad, params.data.descripcionFacultad);
-        },
         filterParams: { newRowsAction: "keep" },
       },
       {
@@ -146,17 +143,11 @@ export class PlanAcademicoComponent implements OnInit, AfterViewInit, OnDestroy,
         field: "escuela",
         cellClass: 'ob-type-string-center',
         filter: 'agTextColumnFilter',
-        valueGetter: (params) => {
-          return !params.data ? '' : joinWords(DEFAULT_SEPARATOR, params.data.escuela, params.data.descripcionEscuela);
-        },
         filterParams: { newRowsAction: "keep" },
       },
       {
         headerName: "Especialidad",
         field: "especialidad",
-        valueGetter: (params) => {
-          return !params.data ? '' : joinWords(DEFAULT_SEPARATOR, params.data.especialidad, params.data.descripcionEspecialidad);
-        },
         cellClass: 'ob-type-string-center',
         filter: 'agTextColumnFilter',
         filterParams: { newRowsAction: "keep" },

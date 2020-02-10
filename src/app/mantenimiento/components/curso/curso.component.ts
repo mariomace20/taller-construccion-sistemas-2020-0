@@ -123,15 +123,12 @@ export class CursoComponent implements OnInit, AfterViewInit, OnDestroy, AfterVi
         field: "idPlan",
         cellClass: 'ob-type-string-center',
         filter: 'agTextColumnFilter',
-        valueGetter: (params) => {
-          return !params.data ? '' : joinWords(DEFAULT_SEPARATOR, params.data.idPlan, params.data.descripcionPlan);
-        },
         filterParams: { newRowsAction: "keep" },
       },
       {
         headerName: "Curso",
         field: "idCurso",
-        cellClass: 'ob-type-string-center',
+        cellClass: 'ob-type-string',
         filter: 'agTextColumnFilter',
         valueGetter: (params) => {
           return !params.data ? '' : joinWords(DEFAULT_SEPARATOR, params.data.idCurso, params.data.descripcion);
@@ -140,7 +137,7 @@ export class CursoComponent implements OnInit, AfterViewInit, OnDestroy, AfterVi
       },
       {
         headerName: "Ciclo",
-        field: "idCiclo",
+        field: "ciclo",
         cellClass: 'ob-type-string-center',
         filter: 'agTextColumnFilter',
         filterParams: { newRowsAction: "keep" },
@@ -155,7 +152,7 @@ export class CursoComponent implements OnInit, AfterViewInit, OnDestroy, AfterVi
       {
         headerName: "Creditaje",
         field: "creditaje",
-        cellClass: 'ob-type-string-center',
+        cellClass: 'ob-type-number',
         filter: 'agTextColumnFilter',
         filterParams: { newRowsAction: "keep" },
       },
