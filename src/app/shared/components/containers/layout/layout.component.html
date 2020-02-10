@@ -22,14 +22,14 @@
         </div>
         <a class="dropdown-item" style="font-size: 10px !important;">
           <i class="fa fa-exclamation" aria-hidden="true" style="color: red;"></i>
-          Tipo de cambio SBS no registrado
+          Tipo de cambio SBS no registrado *ngIf="permisoConsultaFechaProceso"
         </a>
       </div>
     </li>-->
-    <!--<li (click)="redirectParametrosSistema()" class="nav-item px-3 redirect" *ngIf="permisoConsultaFechaProceso">
-      <i class="fa fa-calendar"></i>&nbsp;Fecha Proceso: <span *ngIf="loadingFecha; else fechaCargada">Cargando...</span>
-        <ng-template #fechaCargada>{{ fechaProceso === null ? 'No se puede mostrar': fechaProceso }} </ng-template>
-    </li>-->
+    <li (click)="abrirModalParametros()" class="nav-item px-3 redirect">
+      <i class="fa fa-calendar"></i>&nbsp;Periodo Académico: <span *ngIf="loadingFecha; else periodoCargando">Cargando...</span>
+        <ng-template #fechaCargada>{{ periodo === null ? 'No se puede mostrar': periodo }} </ng-template>
+    </li>
     <li class="nav-item dropdown" dropdown placement="bottom right">
       <a class="nav-link ob-custom-label-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false">
          <i class="fa fa-user" aria-hidden="true"></i>&nbsp;{{nombreUsuario}} <i class="fa fa-caret-down"></i>
@@ -82,3 +82,15 @@
   <span><a href="#">{{infoApp.company}}</a> &copy; {{infoApp.year}}</span>
   <span class="ml-auto">Versión {{infoApp.version}}</span>
 </app-footer>
+
+<app-form-modal [options]="options" (onSubmit)="guardarParametros()" #md>
+  <div [formGroup]="form">
+      <div class="form-group row">
+        <label class="col-sm-2 col-md-2 col-lg-2 ob-custom-label-form">Periodo</label>
+        <div class="col-sm-10 col-md-10 col-lg-10">
+          <input type="text" class="form-control" formControlName="periodo">
+          <bfv-messages></bfv-messages>
+        </div>
+      </div>
+  </div>
+</app-form-modal>

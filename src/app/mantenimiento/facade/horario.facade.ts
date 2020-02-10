@@ -9,15 +9,15 @@ export class HorarioFacade {
 
   constructor(
     private store: Store<AppState>,
-    private cursoService: HorarioService
+    private service: HorarioService
   ){}
 
   buscarTodos(): Observable<any>{
-    return this.cursoService.buscarTodos();
+    return this.service.buscarTodos();
   }
 
   cargar(files: File[]): Observable<any>{
-    return this.cursoService.cargar(files);
+    return this.service.cargar(files);
   }
 
 }

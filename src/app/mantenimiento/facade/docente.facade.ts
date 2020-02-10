@@ -2,22 +2,22 @@ import { Injectable } from '@angular/core';
 import { AppState } from '../../shared/store/app.reducers';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { HorarioService } from '../services';
+import { DocenteService } from '../services';
 
 @Injectable()
 export class DocenteFacade {
 
   constructor(
     private store: Store<AppState>,
-    private cursoService: HorarioService
+    private docenteService: DocenteService
   ){}
 
   buscarTodos(): Observable<any>{
-    return this.cursoService.buscarTodos();
+    return this.docenteService.buscarTodos();
   }
 
   cargar(files: File[]): Observable<any>{
-    return this.cursoService.cargar(files);
+    return this.docenteService.cargar(files);
   }
 
 }

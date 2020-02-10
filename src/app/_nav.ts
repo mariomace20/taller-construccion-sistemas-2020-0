@@ -61,10 +61,15 @@ export const navItems: NavData[] = [
     ]
   },
   {
-    name: 'Consultas',
+    name: 'Procesos',
     icon: 'fa fa-columns nivel-0',
     children: [
-
+      {
+        name: 'Asignación de espacios',
+        icon: 'fa fa-table nivel-1',
+        url: '/proceso/asignacion-espacios',
+        permissions: ['EJEC_ASIGESPAC']
+      },
     ]
   },
 ];

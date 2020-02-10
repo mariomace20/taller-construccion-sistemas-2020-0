@@ -9,3 +9,4 @@ export * from './docente.service';
 export * from './plan-academico.service';
 export * from './detalle-horario.service';
 export * from './programacion-academica.service';
+export * from './parametros-generales.service';

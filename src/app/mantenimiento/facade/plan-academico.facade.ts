@@ -9,15 +9,15 @@ export class PlanAcademicoFacade {
 
   constructor(
     private store: Store<AppState>,
-    private cursoService: PlanAcademicoService
+    private service: PlanAcademicoService
   ){}
 
   buscarTodos(): Observable<any>{
-    return this.cursoService.buscarTodos();
+    return this.service.buscarTodos();
   }
 
   cargar(files: File[]): Observable<any>{
-    return this.cursoService.cargar(files);
+    return this.service.cargar(files);
   }
 
 }

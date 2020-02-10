@@ -7,3 +7,4 @@ export * from './docente.facade';
 export * from './plan-academico.facade';
 export * from './detalle-horario.facade';
 export * from './programacion-academica.facade';
+export * from './parametros-generales.facade';

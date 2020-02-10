@@ -3,13 +3,17 @@ import { DOCUMENT } from '@angular/common';
 import { navItems } from '../../../../_nav';
 import { AppState } from '../../../store/app.reducers';
 import { Store } from '@ngrx/store';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Logout } from '../../../store/actions/auth/auth.actions';
 //import { NavData } from '../../../../reportes/user/components/sidebar-tablas/_sidebar';
 import { Router } from '@angular/router';
+import { MdFormOpts } from '../../modals/form-modal/form-modal.component';
+import { ModalComponent } from '../../modals/modal/modal.component';
 import { SEC_AUTH, TYPES, RESOURCE_ACTIONS } from '../../../utils';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { PermissionsService } from '../../../services';
+import { ParametrosGeneralesService } from '../../../../mantenimiento/services/parametros-generales.service';
 //import { GetAllParametroSistema } from '../../../store/actions/mantenimiento/parametro-sistema.actions';
 import { UpdatePage } from '../../../store/actions/help.actions';
 
@@ -21,6 +25,17 @@ import { UpdatePage } from '../../../store/actions/help.actions';
 export class LayoutComponent implements OnDestroy, OnInit, AfterViewInit {
 
   @ViewChild("sidebarNav", { read: ElementRef }) sidebarNav: ElementRef;
+
+  @ViewChild('md') md: ModalComponent;
+
+  options: MdFormOpts = {
+    title: 'Parámetros',
+    buttons: {
+      ok: { text: 'Guardar', disabled: false },
+      cancel: { text: 'Cancelar', class: 'btn-secondary' }
+    },
+    modalClass: 'modal-mantenimientos'
+  }
 
   public navItems = [];
   public sidebarMinimized = true;
@@ -41,12 +56,13 @@ export class LayoutComponent implements OnDestroy, OnInit, AfterViewInit {
 
   //public componenteActual: any;
 
-
+  form:FormGroup;
 
   constructor(
     private store: Store<AppState>,
     private router: Router,
     private permissionsService: PermissionsService,
+    private parametrosGeneralesService: ParametrosGeneralesService,
     private renderer: Renderer2,
     @Inject(SEC_AUTH) private auth: boolean,
     @Inject(DOCUMENT) _document?: any
@@ -58,6 +74,9 @@ export class LayoutComponent implements OnDestroy, OnInit, AfterViewInit {
     this.changes.observe(<Element>this.element, {
       attributes: true,
       attributeFilter: ['class']
+    });
+    this.form = new FormGroup({
+      'periodo': new FormControl('', [Validators.required ,Validators.min(6), Validators.max(6), Validators.required]),
     });
   }
 
@@ -155,5 +174,12 @@ export class LayoutComponent implements OnDestroy, OnInit, AfterViewInit {
     //this.store.dispatch(new UpdatePage(this.componenteActual));
   }
 
+  abrirModalCambioFecha(){
+    this.md.show();
+  }
+
+  guardarParametros(){
+    this.parametrosGeneralesService.registrar(this.form.getRawValue());
+  }
 
 }
