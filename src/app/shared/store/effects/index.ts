@@ -26,6 +26,8 @@ import { AsignacionPermisosEffects } from './seguridad/asignacion-permisos.effec
 import { MenuRecursoEffects } from './seguridad/menu-recurso.effects';
 
 // Procesos
+import { AsignacionEspaciosEffects } from './procesos/asignacion-espacios.effects';
+import { SolicitudEspaciosEffects } from './procesos/solicitud-espacios.effects';
 
 export const effectsArr = [
   AuthEffects,
@@ -50,6 +52,9 @@ export const effectsArr = [
   UsuarioPerfilEffects,
   AsignacionPermisosEffects,
   MenuRecursoEffects,
+  //Procesos
+  AsignacionEspaciosEffects,
+  SolicitudEspaciosEffects,
 ];
 
 export * from './auth/auth.effects';
@@ -74,3 +79,6 @@ export * from './seguridad/perfil.effects';
 export * from './seguridad/usuario-perfil-seg.effects';
 export * from './seguridad/asignacion-permisos.effects';
 export * from './seguridad/menu-recurso.effects';
+// Proceso
+export * from './procesos/solicitud-espacios.effects';
+export * from './procesos/asignacion-espacios.effects';

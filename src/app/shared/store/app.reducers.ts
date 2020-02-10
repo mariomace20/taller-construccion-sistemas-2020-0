@@ -29,6 +29,7 @@ import * as fromAsignacionPermisos from './reducers/seguridad/asignacion-permiso
 import * as fromRecursoAsignacionGrilla from './reducers/seguridad/asignacion-permisos-grilla.reducer';
 /*Procesos*/
 import * as fromAsignacionEspacios from './reducers/procesos/asignacion-espacios.reducer';
+import * as fromSolicitudEspacios from './reducers/procesos/solicitud-espacios.reducer';
 
 /* Mantenimientos */
 import {
@@ -92,6 +93,7 @@ export interface AppState {
   asignacionPermisosGrilla: fromRecursoAsignacionGrilla.RecursoAsignacionState,
   // Procesos
   asignacionEspacios: State<any>,
+  solicitudEspacios: State<any>,
 }
 
 export const appReducers: ActionReducerMap<AppState> = {
@@ -123,4 +125,5 @@ export const appReducers: ActionReducerMap<AppState> = {
   asignacionPermisos: fromAsignacionPermisos.asignacionPermisosReducer,
   asignacionPermisosGrilla: fromRecursoAsignacionGrilla.asignacionPermisosGrillaReducer,
   asignacionEspacios: fromAsignacionEspacios.asignacionEspaciosReducer,
+  solicitudEspacios: fromSolicitudEspacios.solicitudEspaciosReducer,
 };
