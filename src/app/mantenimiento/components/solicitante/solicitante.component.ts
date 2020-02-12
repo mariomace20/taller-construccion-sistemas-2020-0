@@ -35,9 +35,9 @@ export class SolicitanteComponent implements OnInit, AfterViewInit, OnDestroy {
   private gridColumnApi;
   templateHtmlMsg:string;
 
-  baseForm:any[];
-  escuelaAcademicaForm:any[];
-  tipoSolicitanteForm:any[];
+  baseForm:any[]= [];
+  escuelaAcademicaForm:any[]= [];
+  tipoSolicitanteForm:any[]= [];
   constructor(
     private solicitanteFacade: SolicitanteFacade,
     private multitabDetFacade: MultitabDetFacade,
@@ -61,9 +61,9 @@ export class SolicitanteComponent implements OnInit, AfterViewInit, OnDestroy {
       'apellidoPaterno': new FormControl('', [Validators.required, Validators.maxLength(40)]),
       'celular': new FormControl('', [Validators.required, Validators.maxLength(9)]),
       'email': new FormControl('', [Validators.required, Validators.maxLength(30)]),
-      'tipoSolicitante' : new FormControl([]),
-      'escuelaAcademica' : new FormControl([]),
-      'base' : new FormControl([]),
+      'tipoSolicitanteForm' : new FormControl([]),
+      'escuelaAcademicaForm' : new FormControl([]),
+      'baseForm' : new FormControl([]),
 
     })
     this.mdFormOpts = this.mdRegisterOpts;
@@ -83,7 +83,7 @@ export class SolicitanteComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     this.manageState();
-
+    this.solicitanteFacade.initData();
   }
 
 
