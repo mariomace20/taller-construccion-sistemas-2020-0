@@ -36,7 +36,7 @@ export class SolicitanteComponent implements OnInit, AfterViewInit, OnDestroy {
   templateHtmlMsg:string;
 
   base:any[]= [];
-  escuelaAcademica:any[]= [];
+  escuela:any[]= [];
   tipoSolicitante:any[]= [];
   constructor(
     private solicitanteFacade: SolicitanteFacade,
@@ -62,7 +62,7 @@ export class SolicitanteComponent implements OnInit, AfterViewInit, OnDestroy {
       'celular': new FormControl('', [Validators.required, Validators.maxLength(9)]),
       'email': new FormControl('', [Validators.required, Validators.maxLength(30)]),
       'tipoSolicitante' : new FormControl([]),
-      'escuelaAcademica' : new FormControl([]),
+      'escuela' : new FormControl([]),
       'base' : new FormControl([]),
 
     })
@@ -110,7 +110,7 @@ export class SolicitanteComponent implements OnInit, AfterViewInit, OnDestroy {
 
     });
     this.multitabDetFacade.buscarPorMultitabCabSync(MULTITAB_IDS.escuelaAcademica).pipe(takeUntil(this.ngUnsubscribe)).subscribe((data) => {
-      this.escuelaAcademica=data;
+      this.escuela=data;
     });
 
     this.store.select('solicitantes').pipe(takeUntil(this.ngUnsubscribe)).subscribe((state) => {
