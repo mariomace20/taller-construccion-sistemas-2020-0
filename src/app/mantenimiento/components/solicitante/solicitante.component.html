@@ -57,24 +57,24 @@
       <div class="form-group row">
         <label class="col-sm-2 ob-custom-label-form">Tipo Solicitante</label>
         <div class="form-group col-sm-10">
-          <ng-select #cardTypeSelect [items]="tipoSolicitanteForm" class="ng-select-custom" bindLabel="descripcionItem" bindValue="idMultitabDet" placeholder="TODOS" [notFoundText]="'No hay datos encontrados.'" [multiple]="false"
-            formControlName="tipoSolicitanteForm" >
+          <ng-select #cardTypeSelect [items]="tipoSolicitante" class="ng-select-custom" bindLabel="descripcionItem" bindValue="idMultitabDet" placeholder="TODOS" [notFoundText]="'No hay datos encontrados.'" [multiple]="false"
+            formControlName="tipoSolicitante" >
           </ng-select>
         </div>
       </div>
       <div class="form-group row">
         <label class="col-sm-2 ob-custom-label-form">Escuela</label>
         <div class="form-group col-sm-10">
-          <ng-select #cardTypeSelect [items]="escuelaAcademicaForm" class="ng-select-custom"  bindLabel="descripcionItem" bindValue="idMultitabDet" placeholder="TODOS" [notFoundText]="'No hay datos encontrados.'" [multiple]="false"
-            formControlName="escuelaAcademicaForm" >
+          <ng-select #cardTypeSelect [items]="escuelaAcademica" class="ng-select-custom"  bindLabel="descripcionItem" bindValue="idMultitabDet" placeholder="TODOS" [notFoundText]="'No hay datos encontrados.'" [multiple]="false"
+            formControlName="escuelaAcademica" >
           </ng-select>
         </div>
       </div>
       <div class="form-group row">
         <label class="col-sm-2 ob-custom-label-form">Base</label>
         <div class="form-group col-sm-10">
-          <ng-select #cardTypeSelect [items]="baseForm" class="ng-select-custom" bindLabel="descripcionItem" bindValue="idMultitabDet" placeholder="TODOS" [notFoundText]="'No hay datos encontrados.'" [multiple]="false"
-            formControlName="baseForm" >
+          <ng-select #cardTypeSelect [items]="base" class="ng-select-custom" bindLabel="descripcionItem" bindValue="idMultitabDet" placeholder="TODOS" [notFoundText]="'No hay datos encontrados.'" [multiple]="false"
+            formControlName="base" >
           </ng-select>
         </div>
       </div>

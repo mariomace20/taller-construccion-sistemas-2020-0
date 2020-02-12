@@ -35,9 +35,9 @@ export class SolicitanteComponent implements OnInit, AfterViewInit, OnDestroy {
   private gridColumnApi;
   templateHtmlMsg:string;
 
-  baseForm:any[]= [];
-  escuelaAcademicaForm:any[]= [];
-  tipoSolicitanteForm:any[]= [];
+  base:any[]= [];
+  escuelaAcademica:any[]= [];
+  tipoSolicitante:any[]= [];
   constructor(
     private solicitanteFacade: SolicitanteFacade,
     private multitabDetFacade: MultitabDetFacade,
@@ -61,9 +61,9 @@ export class SolicitanteComponent implements OnInit, AfterViewInit, OnDestroy {
       'apellidoPaterno': new FormControl('', [Validators.required, Validators.maxLength(40)]),
       'celular': new FormControl('', [Validators.required, Validators.maxLength(9)]),
       'email': new FormControl('', [Validators.required, Validators.maxLength(30)]),
-      'tipoSolicitanteForm' : new FormControl([]),
-      'escuelaAcademicaForm' : new FormControl([]),
-      'baseForm' : new FormControl([]),
+      'tipoSolicitante' : new FormControl([]),
+      'escuelaAcademica' : new FormControl([]),
+      'base' : new FormControl([]),
 
     })
     this.mdFormOpts = this.mdRegisterOpts;
@@ -103,19 +103,14 @@ export class SolicitanteComponent implements OnInit, AfterViewInit, OnDestroy {
   manageState() {
 
     this.multitabDetFacade.buscarPorMultitabCabSync(MULTITAB_IDS.base).pipe(takeUntil(this.ngUnsubscribe)).subscribe((data) => {
-      this.baseForm=data;
-      console.log("Asignada");
-      console.log(this.baseForm);
+      this.base=data;
     });
     this.multitabDetFacade.buscarPorMultitabCabSync(MULTITAB_IDS.tipoSolicitante).pipe(takeUntil(this.ngUnsubscribe)).subscribe((data) => {
-      this.tipoSolicitanteForm=data;
-      console.log("Asignada");
-      console.log(this.tipoSolicitanteForm);
+      this.tipoSolicitante=data;
+
     });
     this.multitabDetFacade.buscarPorMultitabCabSync(MULTITAB_IDS.escuelaAcademica).pipe(takeUntil(this.ngUnsubscribe)).subscribe((data) => {
-      this.escuelaAcademicaForm=data;
-      console.log("Asignada");
-      console.log(this.escuelaAcademicaForm);
+      this.escuelaAcademica=data;
     });
 
     this.store.select('solicitantes').pipe(takeUntil(this.ngUnsubscribe)).subscribe((state) => {
@@ -127,12 +122,9 @@ export class SolicitanteComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   showMdRegister() {
-    console.log("REGISTRO");
     this.mdFormOpts = this.mdRegisterOpts;
-    console.log("REGISTRO2");
-
-    enableControls(this.form, false, 'idSolicitante');
-    this.solicitanteFacade.eliminar(this.mdDelete.data);
+    console.log("registroo");
+    console.log(this.mdFormOpts);
     this.mdSave.show({}, RESOURCE_ACTIONS.REGISTRO);
   }
 
@@ -145,6 +137,7 @@ export class SolicitanteComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   showMdDelete(params) {
+    console.log("delete");
     let data: Solicitante = params.node.data;
     this.mdConfirmOpts.htmlMsg = this.templateHtmlMsg.replace(/\[codigo\]/gi,
       joinWords(DEFAULT_SEPARATOR, data.idSolicitante, data.dni));
@@ -155,6 +148,7 @@ export class SolicitanteComponent implements OnInit, AfterViewInit, OnDestroy {
     const action = this.mdSave.action;
     switch (action) {
       case RESOURCE_ACTIONS.REGISTRO:
+        console.log(this.form.getRawValue());
         this.solicitanteFacade.registrar(this.form.getRawValue());
         break;
       case RESOURCE_ACTIONS.ACTUALIZACION:
