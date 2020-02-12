@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { SolicitanteRoutingModule } from './solicitante-routing.module';
 import { SolicitanteComponent } from './solicitante.component';
 import { SharedModule } from '../../../shared/shared.module';
-import { SolicitanteFacade } from '../../facade';
+import { SolicitanteFacade,MultitabDetFacade,MultitabCabFacade } from '../../facade';
 import { ObGridModule } from '../../../shared/ob-grid.module';
 
 @NgModule({
@@ -16,7 +16,8 @@ import { ObGridModule } from '../../../shared/ob-grid.module';
     SolicitanteRoutingModule
   ],
   providers: [
-    SolicitanteFacade
-  ]
+    SolicitanteFacade,
+    MultitabDetFacade,
+    MultitabCabFacade,  ]
 })
 export class SolicitanteModule { }

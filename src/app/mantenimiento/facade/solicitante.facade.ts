@@ -19,12 +19,16 @@ export class SolicitanteFacade {
   constructor(
     private store: Store<AppState>
   ){}
-  /*initData() {
-    this.store.dispatch(new GetAllParametroRep());
+  initData() {
+    console.log("FACADE");
+    console.log(MULTITAB_IDS.base);
+  //  this.store.dispatch(new GetByMultitabCab({ idMultitabCab : MULTITAB_IDS.base }));
+
+    /*this.store.dispatch(new GetAllParametroRep());
     this.store.dispatch(new GetGiroNegocioXMembresia('D'));
     this.store.dispatch(new GetByMultitabCab({ idMultitabCab : MULTITAB_IDS.cardPresentIndicator }));
-    this.store.dispatch(new GetByMultitabCabB({ idMultitabCab : MULTITAB_IDS.cardType}));
-  }*/
+    this.store.dispatch(new GetByMultitabCabB({ idMultitabCab : MULTITAB_IDS.cardType}));*/
+  }
   buscarTodos(){
     this.store.dispatch(new GetAllSolicitante());
   }

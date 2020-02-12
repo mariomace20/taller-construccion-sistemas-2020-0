@@ -8,3 +8,5 @@ export * from './plan-academico.facade';
 export * from './detalle-horario.facade';
 export * from './programacion-academica.facade';
 export * from './parametros-generales.facade';
+export * from './multitab-det.facade';
+export * from './multitab-cab.facade';
