@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { EspacioAcademicoRoutingModule } from './espacio-academico-routing.module';
 import { EspacioAcademicoComponent } from './espacio-academico.component';
 import { SharedModule } from '../../../shared/shared.module';
-import { EspacioAcademicoFacade } from '../../facade';
+import { EspacioAcademicoFacade,MultitabDetFacade,MultitabCabFacade  } from '../../facade';
 import { ObGridModule } from '../../../shared/ob-grid.module';
 
 @NgModule({
@@ -16,7 +16,9 @@ import { ObGridModule } from '../../../shared/ob-grid.module';
     EspacioAcademicoRoutingModule
   ],
   providers: [
-    EspacioAcademicoFacade
+    EspacioAcademicoFacade,
+    MultitabDetFacade,
+    MultitabCabFacade,
   ]
 })
 export class EspacioAcademicoModule { }

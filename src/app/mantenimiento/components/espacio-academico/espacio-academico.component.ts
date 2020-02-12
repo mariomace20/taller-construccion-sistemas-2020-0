@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { FormModalComponent, ConfirmModalComponent, TemplateMantenimientoComponent, MdFormOpts, MdConfirmOpts, ButtonsCellRendererComponent } from '../../../shared';
-import { TYPES, Type, RESOURCE_ACTIONS, getContextMenuItemsMantenimiento, DEFAULT_SEPARATOR, joinWords, commonConfigTablaMantenimiento, enableControls, updateGrid, configFormMd, manageCrudState,renderYesNoLabel } from '../../../shared/utils';
+import { TYPES, Type, RESOURCE_ACTIONS, getContextMenuItemsMantenimiento, DEFAULT_SEPARATOR, joinWords, commonConfigTablaMantenimiento, enableControls, updateGrid, configFormMd, manageCrudState,renderYesNoLabel,MULTITAB_IDS } from '../../../shared/utils';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { GridOptions, GridApi, ColDef } from 'ag-grid-community';
 import { EspacioAcademico } from '../../models';
-import { EspacioAcademicoFacade } from '../../facade';
+import { EspacioAcademicoFacade ,MultitabDetFacade} from '../../facade';
 import { ToastrService } from 'ngx-toastr';
 import { AppState } from '../../../shared/store/app.reducers';
 import { Store } from '@ngrx/store';
@@ -18,7 +18,7 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./espacio-academico.component.scss']
 })
 export class EspacioAcademicoComponent implements OnInit, AfterViewInit, OnDestroy {
-  @ViewChild('templateespacioAcademico') template: TemplateMantenimientoComponent;
+  @ViewChild('templateEspacioAcademico') template: TemplateMantenimientoComponent;
   @ViewChild('mdDelete') mdDelete: ConfirmModalComponent;
   @ViewChild('mdSave') mdSave: FormModalComponent;
 
@@ -34,8 +34,10 @@ export class EspacioAcademicoComponent implements OnInit, AfterViewInit, OnDestr
   gridApi: GridApi;
   private gridColumnApi;
   templateHtmlMsg:string;
+  tipoEspacio:any[]= [];
   constructor(
     private espacioAcademicoFacade: EspacioAcademicoFacade,
+    private multitabDetFacade: MultitabDetFacade,
     private toastr: ToastrService,
     private store: Store<AppState>,
     private errorService: ErrorService
@@ -50,7 +52,7 @@ export class EspacioAcademicoComponent implements OnInit, AfterViewInit, OnDestr
     this.mdUpdateOpts = configFormMd.getUpdateMdOpts(this.type);
     this.form = new FormGroup({
       'idEspacioAcademico': new FormControl('', [Validators.required ,Validators.min(0), Validators.min(0), Validators.max(99)]),
-      'tipoEspacio': new FormControl('', [Validators.required, Validators.maxLength(4)]),
+      'tipoEspacio': new FormControl('', []),
       'descripcion': new FormControl('', [Validators.required, Validators.maxLength(40)]),
       'aforo': new FormControl('', [Validators.required, Validators.maxLength(3)]),
       'pabellon': new FormControl('', [Validators.required, Validators.maxLength(20)]),
@@ -61,7 +63,7 @@ export class EspacioAcademicoComponent implements OnInit, AfterViewInit, OnDestr
     this.gridOptions = {
       ...commonConfigTablaMantenimiento,
       getRowNodeId: (data) => {
-        return data.idespacioAcademico;
+        return data.idEspacioAcademico;
       },
       onGridReady: (params) => {
         this.gridApi = params.api;
@@ -72,26 +74,41 @@ export class EspacioAcademicoComponent implements OnInit, AfterViewInit, OnDestr
         return getContextMenuItemsMantenimiento(params,this.type,this.template.permisoExportacion);
       }
     }
+      /*  this.manageState();
+        this.espacioAcademicoFacade.initData();*/
   }
 
   ngAfterViewInit(){
+    console.log("iniciacion");
+
+    this.template.permisoEliminacion = true;
+    this.template.permisoActualizacion = true;
+
     this.gridOptions.api.setColumnDefs(this.initColumnDefs());
     this.espacioAcademicoFacade.buscarTodos();
     this.manageState();
   }
 
   ngOnDestroy() {
-    //this.espacioAcademicoFacade.resetespacioAcademico();
+    this.espacioAcademicoFacade.resetEspacioAcademico();
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
   }
 
   manageState() {
+    this.multitabDetFacade.buscarPorMultitabCabSync(MULTITAB_IDS.tipoEspacio).pipe(takeUntil(this.ngUnsubscribe)).subscribe((data) => {
+      console.log(data);
+      this.tipoEspacio=data;
+    });
     this.store.select('espaciosAcademico').pipe(takeUntil(this.ngUnsubscribe)).subscribe((state) => {
+      console.log(state);
       manageCrudState(state, this.form, this.template, this.mdFormOpts, this.mdSave, this.mdConfirmOpts, this.mdDelete, this.toastr,
         this.errorService, () => {
+            console.log(state.data);
           updateGrid(this.gridOptions, state.data, this.gridColumnApi);
         });
+    console.log("vacio");
+
     });
   }
 
@@ -104,7 +121,7 @@ export class EspacioAcademicoComponent implements OnInit, AfterViewInit, OnDestr
   showMdUpdate(params){
     let data: EspacioAcademico = params.node.data;
     this.mdFormOpts = this.mdUpdateOpts;
-    enableControls(this.form, false, 'idespacioAcademico');
+    enableControls(this.form, false, 'idEspacioAcademico');
     this.mdSave.show(data, RESOURCE_ACTIONS.ACTUALIZACION);
   }
 
@@ -139,7 +156,7 @@ export class EspacioAcademicoComponent implements OnInit, AfterViewInit, OnDestr
     return [
       {
         headerName: "Código",
-        field: "idespacioAcademico",
+        field: "idEspacioAcademico",
         cellClass: 'ob-type-string-center',
         filter: 'agTextColumnFilter',
         filterParams: { newRowsAction: "keep" },

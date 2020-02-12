@@ -20,9 +20,9 @@
       </div>
 
       <div class="form-group row">
-        <label class="col-sm-1 ob-custom-label-form">Tipo Espacio</label>
-        <div class="form-group col-sm-3">
-          <ng-select #cardTypeSelect [items]="tipoEspacio" class="ng-select-custom" bindLabel="label" bindValue="idMultitabDet" placeholder="TODOS" [notFoundText]="'No hay datos encontrados.'" [multiple]="false"
+        <label class="col-sm-2 ob-custom-label-form">Tipo Espacio</label>
+        <div class="form-group col-sm-10">
+          <ng-select #cardTypeSelect [items]="tipoEspacio" class="ng-select-custom" bindLabel="descripcionItem" bindValue="idMultitabDet" placeholder="TODOS" [notFoundText]="'No hay datos encontrados.'" [multiple]="false"
             formControlName="tipoEspacio" >
           </ng-select>
         </div>
@@ -62,7 +62,7 @@
           <bfv-messages></bfv-messages>
         </div>
       </div>
-    </div> 
+    </div>
 
   </div>
 </app-form-modal>

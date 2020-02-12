@@ -18,7 +18,10 @@ export class EspacioAcademicoFacade {
   constructor(
     private store: Store<AppState>
   ){}
+  initData() {
 
+   this.store.dispatch(new GetByMultitabCab({ idMultitabCab : MULTITAB_IDS.base }));
+  }
   buscarTodos(){
     this.store.dispatch(new GetAllEspacioAcademico());
   }

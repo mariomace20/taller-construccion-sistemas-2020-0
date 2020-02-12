@@ -125,6 +125,7 @@ export class SolicitanteComponent implements OnInit, AfterViewInit, OnDestroy {
     this.mdFormOpts = this.mdRegisterOpts;
     console.log("registroo");
     console.log(this.mdFormOpts);
+
     this.mdSave.show({}, RESOURCE_ACTIONS.REGISTRO);
   }
 
@@ -137,7 +138,7 @@ export class SolicitanteComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   showMdDelete(params) {
-    console.log("delete");
+
     let data: Solicitante = params.node.data;
     this.mdConfirmOpts.htmlMsg = this.templateHtmlMsg.replace(/\[codigo\]/gi,
       joinWords(DEFAULT_SEPARATOR, data.idSolicitante, data.dni));
