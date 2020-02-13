@@ -101,18 +101,15 @@ export class SolicitanteComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   manageState() {
-
     this.multitabDetFacade.buscarPorMultitabCabSync(MULTITAB_IDS.base).pipe(takeUntil(this.ngUnsubscribe)).subscribe((data) => {
       this.base=data;
     });
     this.multitabDetFacade.buscarPorMultitabCabSync(MULTITAB_IDS.tipoSolicitante).pipe(takeUntil(this.ngUnsubscribe)).subscribe((data) => {
       this.tipoSolicitante=data;
-
     });
     this.multitabDetFacade.buscarPorMultitabCabSync(MULTITAB_IDS.escuelaAcademica).pipe(takeUntil(this.ngUnsubscribe)).subscribe((data) => {
       this.escuela=data;
     });
-
     this.store.select('solicitantes').pipe(takeUntil(this.ngUnsubscribe)).subscribe((state) => {
       manageCrudState(state, this.form, this.template, this.mdFormOpts, this.mdSave, this.mdConfirmOpts, this.mdDelete, this.toastr,
         this.errorService, () => {

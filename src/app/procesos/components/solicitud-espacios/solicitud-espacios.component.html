@@ -32,7 +32,7 @@
               </div>
             </div>
             <div class="row">
-              <label class="col-sm-2 ob-custom-label-form">Fecha Proceso</label>
+              <label class="col-sm-2 ob-custom-label-form">Fecha</label>
               <div class="form-group col-sm-4">
                 <div class="input-group">
                   <input stype="text" class="form-control" placeholder="" #drpFechaProceso="bsDaterangepicker"
@@ -70,9 +70,9 @@
           <div class="form-group row">
             <label class="col-sm-2 col-md-2 col-lg-2 ob-custom-label-form">Tipo</label>
             <div class="col-sm-10 col-md-10 col-lg-10">
-              <ng-select #pabellonSelect [items]="tipoSolicitudes" class="ng-select-custom" bindLabel="label" bindValue="idTipoSolicitud"
+              <ng-select #pabellonSelect [items]="tipoSolicitante" class="ng-select-custom" bindLabel="descripcionItem" bindValue="idMultitabDet"
                 placeholder="TODOS" [notFoundText]="'No hay datos encontrados.'"
-                formControlName="tipoSolicitud">
+                formControlName="tipoSolicitud" (change)="onChangeTipoSolicitante($event)">
               </ng-select>
               <bfv-messages></bfv-messages>
             </div>
@@ -80,9 +80,15 @@
           <div class="form-group row">
             <label class="col-sm-2 col-md-2 col-lg-2 ob-custom-label-form">Solicitante</label>
             <div class="col-sm-10 col-md-10 col-lg-10">
-              <ng-select #pabellonSelect [items]="solicitantes" class="ng-select-custom" bindLabel="label" bindValue="idSolicitante"
+              <ng-select #pabellonSelect [items]="solicitantesFiltrado" class="ng-select-custom" bindLabel="label" bindValue="idSolicitante"
                 placeholder="TODOS" [notFoundText]="'No hay datos encontrados.'"
                 formControlName="solicitante">
+                <ng-template ng-option-tmp let-item="item">
+              {{item.dni}} - {{item.nombres}} {{item.apellidoPaterno}} {{item.apellidoMaterno}}
+                </ng-template>
+                <ng-template ng-label-tmp let-item="item">
+              {{item.dni}} - {{item.nombres}} {{item.apellidoPaterno}} {{item.apellidoMaterno}}
+                </ng-template>
               </ng-select>
               <bfv-messages></bfv-messages>
             </div>
@@ -96,7 +102,7 @@
           </div>
           <div class="form-group row">
             <div class="col-lg-12 text-center">
-              <button type="submit" class="btn btn-success" [disabled]="prestando">
+              <button type="submit" class="btn btn-success" [disabled]="prestando" (click)="clickSolicitar()">
                 <i class="fa" [ngClass]="{'fa-spinner fa-pulse fa-fw': prestando  , 'fa-check': !prestando}"></i> Agregar solicitud
               </button>
             </div>

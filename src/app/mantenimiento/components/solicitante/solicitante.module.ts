@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { SolicitanteRoutingModule } from './solicitante-routing.module';
 import { SolicitanteComponent } from './solicitante.component';
 import { SharedModule } from '../../../shared/shared.module';

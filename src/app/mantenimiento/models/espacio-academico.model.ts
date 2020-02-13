@@ -1,6 +1,6 @@
 export interface EspacioAcademico {
 idEspacioAcademico: number,
-descripcion:string,
+descripcionEspacioAcademico:string,
 aforo:number,
 pabellon:string,
 tipoEspacio:string,

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
 import { FormModalComponent, ConfirmModalComponent, TemplateMantenimientoComponent, MdFormOpts, MdConfirmOpts, ButtonsCellRendererComponent } from '../../../shared';
-import { TYPES, Type, RESOURCE_ACTIONS, getContextMenuItemsMantenimiento, DEFAULT_SEPARATOR, joinWords, commonConfigTablaMantenimiento, enableControls, updateGrid, configFormMd, manageCrudState } from '../../../shared/utils';
+import { TYPES, Type, RESOURCE_ACTIONS, MULTITAB_IDS, getContextMenuItemsMantenimiento, addLabelToObjsArr, DEFAULT_SEPARATOR, joinWords, commonConfigTablaMantenimiento, enableControls, updateGrid, configFormMd, manageCrudState } from '../../../shared/utils';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { GridOptions, GridApi, ColDef } from 'ag-grid-community';
 import { ToastrService } from 'ngx-toastr';
@@ -9,6 +9,7 @@ import { Store } from '@ngrx/store';
 import { ErrorService } from '../../../shared/services/errors/error.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { MultitabDetFacade } from '../../../mantenimiento/facade';
 import { SolicitudEspaciosFacade } from '../../facade/solicitud-espacios.facade';
 
 @Component({
@@ -46,8 +47,13 @@ export class SolicitudEspaciosComponent implements OnInit, AfterViewInit, OnDest
   buscando: boolean = false;
   prestando: boolean = false;
 
+  tipoSolicitante: any[] = [];
+  solicitantes: any[] = [];
+  solicitantesFiltrado: any[] = [];
+
   constructor(
     private solicitudEspaciosFacade: SolicitudEspaciosFacade,
+    private multitabDetFacade: MultitabDetFacade,
     private toastr: ToastrService,
     private store: Store<AppState>,
     private errorService: ErrorService,
@@ -77,7 +83,7 @@ export class SolicitudEspaciosComponent implements OnInit, AfterViewInit, OnDest
     this.gridOptions = {
       ...commonConfigTablaMantenimiento,
       getRowNodeId: (data) => {
-        return data.idOrigen;
+        return data.idSolicitud;
       },
       onGridReady: (params) => {
         this.gridApi = params.api;
@@ -130,8 +136,31 @@ export class SolicitudEspaciosComponent implements OnInit, AfterViewInit, OnDest
           updateGrid(this.gridOptions, state.data, this.gridColumnApi);
         });
     });
+    this.multitabDetFacade.buscarPorMultitabCabSync(MULTITAB_IDS.tipoSolicitante).pipe(takeUntil(this.ngUnsubscribe)).subscribe((data) => {
+      this.tipoSolicitante = data;
+    });
+    this.solicitudEspaciosFacade.buscarSolicitantes().pipe(takeUntil(this.ngUnsubscribe)).subscribe((data) => {
+      this.solicitantes = data;
+      this.solicitantesFiltrado = data;
+    });
   }
 
+  onChangeTipoSolicitante(item){
+    if(item==undefined || item==null){
+      this.solicitantes = [];
+      return;
+    }
+    this.solicitantesFiltrado = this.solicitantes.filter(e=>e.idTipoSolicitante == item);
+    console.log(this.solicitantesFiltrado);
+  }
+
+  clickSolicitar(){
+    let form = this.form.getRawValue();
+    console.log(form);
+    this.solicitudEspaciosFacade.registrar(form).pipe(takeUntil(this.ngUnsubscribe)).subscribe((state) => {
+      console.log(state);
+    });
+  }
 
   abrirModalRegistrar(){
     this.mdSave.show({});
@@ -149,7 +178,7 @@ export class SolicitudEspaciosComponent implements OnInit, AfterViewInit, OnDest
       },
       {
         headerName: "Espacio",
-        field: 'espacioAcademico',
+        field: 'idEspacioAcademico',
         cellClass: 'ob-type-string',
         filter: 'agTextColumnFilter',
         filterParams: { newRowsAction: "keep" }

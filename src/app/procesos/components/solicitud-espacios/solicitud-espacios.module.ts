@@ -6,6 +6,7 @@ import { SharedModule } from '../../../shared/shared.module';
 import { SolicitudEspaciosFacade } from '../../facade';
 import { ObGridModule } from '../../../shared/ob-grid.module';
 import { ObDatepickerModule } from '../../../shared/ob-datepicker.module';
+import { MultitabDetFacade, MultitabCabFacade } from '../../../mantenimiento/facade';
 
 @NgModule({
   declarations: [SolicitudEspaciosComponent],
@@ -17,7 +18,9 @@ import { ObDatepickerModule } from '../../../shared/ob-datepicker.module';
     SolicitudEspaciosRoutingModule
   ],
   providers: [
-    SolicitudEspaciosFacade
+    SolicitudEspaciosFacade,
+    MultitabDetFacade,
+    MultitabCabFacade
   ]
 })
 export class SolicitudEspaciosModule { }
