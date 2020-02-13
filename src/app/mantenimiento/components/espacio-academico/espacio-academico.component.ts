@@ -51,7 +51,7 @@ export class EspacioAcademicoComponent implements OnInit, AfterViewInit, OnDestr
     this.mdRegisterOpts = configFormMd.getRegisterMdOpts(this.type);
     this.mdUpdateOpts = configFormMd.getUpdateMdOpts(this.type);
     this.form = new FormGroup({
-      'idEspacioAcademico': new FormControl('', [Validators.required ,Validators.min(0), Validators.min(0), Validators.max(99)]),
+      'idEspacioAcademico': new FormControl('', [Validators.required ,Validators.min(0), Validators.min(0), Validators.max(999)]),
       'tipoEspacio': new FormControl('', []),
       'descripcionEspacioAcademico': new FormControl('', [Validators.required, Validators.maxLength(40)]),
       'aforo': new FormControl('', [Validators.required, Validators.maxLength(3)]),
