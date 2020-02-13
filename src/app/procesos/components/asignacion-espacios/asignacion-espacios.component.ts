@@ -65,7 +65,7 @@ export class AsignacionEspaciosComponent implements OnInit, AfterViewInit, OnDes
     this.gridOptions = {
       ...commonConfigTablaMantenimiento,
       getRowNodeId: (data) => {
-        return data.idOrigen;
+        return data.id;
       },
       onGridReady: (params) => {
         this.gridApi = params.api;
@@ -109,6 +109,9 @@ export class AsignacionEspaciosComponent implements OnInit, AfterViewInit, OnDes
         this.errorService, () => {
           updateGrid(this.gridOptions, state.data, this.gridColumnApi);
         });
+    });
+    this.store.select('espaciosAcademico').pipe(takeUntil(this.ngUnsubscribe)).subscribe((state) => {
+      console.log(state);
     });
   }
 
@@ -157,6 +160,15 @@ export class AsignacionEspaciosComponent implements OnInit, AfterViewInit, OnDes
         field: "periodo",
         cellClass: 'ob-type-string-center',
         filter: 'agTextColumnFilter',
+        valueGetter: (params) => {
+          if(params.data){
+            params.data['periodo'] = '2020-0';
+            params.data['periodo'] = '2020-0';
+            return params.data.periodo;
+          }else{
+            return '';
+          }
+        },
         filterParams: { newRowsAction: "keep" },
 
       },
@@ -192,7 +204,7 @@ export class AsignacionEspaciosComponent implements OnInit, AfterViewInit, OnDes
         headerName: "Docente",
         field: 'idDocente',
         valueGetter: (params) => {
-          return !params.data ? '' : ( params.data.idDocente+ " - "  + params.data.nombresDocente  + " " + params.data.apellidosDocente);
+          return !params.data ? '' : ( params.data.idDocente+ " - "  + params.data.nombresDocente);
         },
         cellClass: 'ob-type-string',
         filter: 'agTextColumnFilter',
@@ -201,14 +213,14 @@ export class AsignacionEspaciosComponent implements OnInit, AfterViewInit, OnDes
       {
         headerName: "Tope",
         field: 'tope',
-        cellClass: 'ob-type-string',
+        cellClass: 'ob-type-number',
         filter: 'agTextColumnFilter',
         filterParams: { newRowsAction: "keep" }
       },
       {
         headerName: "Matriculados",
         field: 'matriculados',
-        cellClass: 'ob-type-string',
+        cellClass: 'ob-type-number',
         filter: 'agTextColumnFilter',
         filterParams: { newRowsAction: "keep" }
       },
@@ -216,6 +228,9 @@ export class AsignacionEspaciosComponent implements OnInit, AfterViewInit, OnDes
         headerName: "Turno",
         field: 'turno',
         cellClass: 'ob-type-string',
+        valueGetter: (params) => {
+          return !params.data ? '' : ( params.data.turno+ " - "  + params.data.descripcionTurno);
+        },
         filter: 'agTextColumnFilter',
         filterParams: { newRowsAction: "keep" }
       },
@@ -235,14 +250,14 @@ export class AsignacionEspaciosComponent implements OnInit, AfterViewInit, OnDes
       },
       {
         headerName: "Inicio",
-        field: 'horaInicio',
+        field: 'horarioInicio',
         cellClass: 'ob-type-string',
         filter: 'agTextColumnFilter',
         filterParams: { newRowsAction: "keep" }
       },
       {
         headerName: "Fin",
-        field: 'horaFin',
+        field: 'horarioFin',
         cellClass: 'ob-type-string',
         filter: 'agTextColumnFilter',
         filterParams: { newRowsAction: "keep" }

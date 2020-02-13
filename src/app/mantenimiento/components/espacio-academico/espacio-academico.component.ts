@@ -53,7 +53,7 @@ export class EspacioAcademicoComponent implements OnInit, AfterViewInit, OnDestr
     this.form = new FormGroup({
       'idEspacioAcademico': new FormControl('', [Validators.required ,Validators.min(0), Validators.min(0), Validators.max(99)]),
       'tipoEspacio': new FormControl('', []),
-      'descripcion': new FormControl('', [Validators.required, Validators.maxLength(40)]),
+      'descripcionEspacioAcademico': new FormControl('', [Validators.required, Validators.maxLength(40)]),
       'aforo': new FormControl('', [Validators.required, Validators.maxLength(3)]),
       'pabellon': new FormControl('', [Validators.required, Validators.maxLength(20)]),
       'asignable': new FormControl('', [Validators.required, Validators.maxLength(1)]),
@@ -74,13 +74,9 @@ export class EspacioAcademicoComponent implements OnInit, AfterViewInit, OnDestr
         return getContextMenuItemsMantenimiento(params,this.type,this.template.permisoExportacion);
       }
     }
-      /*  this.manageState();
-        this.espacioAcademicoFacade.initData();*/
   }
 
   ngAfterViewInit(){
-    console.log("iniciacion");
-
     this.template.permisoEliminacion = true;
     this.template.permisoActualizacion = true;
 
@@ -101,14 +97,10 @@ export class EspacioAcademicoComponent implements OnInit, AfterViewInit, OnDestr
       this.tipoEspacio=data;
     });
     this.store.select('espaciosAcademico').pipe(takeUntil(this.ngUnsubscribe)).subscribe((state) => {
-      console.log(state);
       manageCrudState(state, this.form, this.template, this.mdFormOpts, this.mdSave, this.mdConfirmOpts, this.mdDelete, this.toastr,
         this.errorService, () => {
-            console.log(state.data);
           updateGrid(this.gridOptions, state.data, this.gridColumnApi);
         });
-    console.log("vacio");
-
     });
   }
 
@@ -126,9 +118,9 @@ export class EspacioAcademicoComponent implements OnInit, AfterViewInit, OnDestr
   }
 
   showMdDelete(params) {
-    let data: EspacioAcademico = params.node.data;
+    let data: any = params.node.data;
     this.mdConfirmOpts.htmlMsg = this.templateHtmlMsg.replace(/\[codigo\]/gi,
-      joinWords(DEFAULT_SEPARATOR, data.idEspacioAcademico, data.descripcion));
+      joinWords(DEFAULT_SEPARATOR, data.idEspacioAcademico, data.descripcionEspacioAcademico));
     this.mdDelete.show(data);
   }
 
@@ -163,13 +155,16 @@ export class EspacioAcademicoComponent implements OnInit, AfterViewInit, OnDestr
 
       },{
         headerName: "Descripción",
-        field: 'descripcion',
+        field: 'descripcionEspacioAcademico',
         cellClass: 'ob-type-string',
         filter: 'agTextColumnFilter',
         filterParams: { newRowsAction: "keep" }
       },{
         headerName: "Tipo Espacio",
         field: 'tipoEspacio',
+        valueGetter: (params) => {
+          return !params.data ? '' : joinWords(DEFAULT_SEPARATOR, params.data.tipoEspacio, params.data.descripcionTipoEspacio);
+        },
         cellClass: 'ob-type-string',
         filter: 'agTextColumnFilter',
         filterParams: { newRowsAction: "keep" }
@@ -188,7 +183,7 @@ export class EspacioAcademicoComponent implements OnInit, AfterViewInit, OnDestr
       },{
         headerName: "Asignable",
         field: 'asignable',
-        cellClass: 'ob-type-string',
+        cellClass: 'ob-type-string-center',
         cellRenderer: (params) => {
           return renderYesNoLabel(params.value);
         },
