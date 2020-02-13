@@ -59,8 +59,7 @@ export class AsignacionEspaciosComponent implements OnInit, AfterViewInit, OnDes
       'curso': new FormControl('', [Validators.required, Validators.maxLength(30)]),
       'matriculados': new FormControl('', [Validators.required, Validators.maxLength(30)]),
       'tipoHorario': new FormControl('', [Validators.required, Validators.maxLength(30)]),
-      'idPabellon': new FormControl('', [Validators.required, Validators.maxLength(30)]),
-      'idEspacioAcademico': new FormControl('', [Validators.required, Validators.maxLength(30)]),
+      'espacio': new FormControl('', [Validators.required, Validators.maxLength(30)]),
     })
     this.mdFormOpts = this.mdRegisterOpts;
     this.gridOptions = {
@@ -77,14 +76,15 @@ export class AsignacionEspaciosComponent implements OnInit, AfterViewInit, OnDes
         return getContextMenuItemsMantenimiento(params,this.type,this.template.permisoExportacion);
       }
     }
-  }
-
-  ngAfterViewChecked() {
     this.asignacionEspaciosFacade.initCombo().pipe(takeUntil(this.ngUnsubscribe)).subscribe(
       (data) => {
           this.espaciosAcademico = data;
       }
     );
+  }
+
+  ngAfterViewChecked() {
+
     this.cdRef.detectChanges();
   }
 

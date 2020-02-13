@@ -13,61 +13,63 @@ export interface NavData {
   permissions?: string[]
 }
 
-/**
- * Temporal, debe venir del backend
- * Solo aparecerá si en su env, auth es false
- */
 export const navItems: NavData[] = [
   {
-    name: 'Mantenimientos',
-    icon: 'fa fa-table nivel-0',
+    name: 'Carga de datos',
+    icon: 'fa fa-upload nivel-0',
     children: [
       {
-      name: 'Solicitantes',
-      icon: 'fa fa-table nivel-1',
-      url: '/mantenimiento/solicitante',
-      permissions: ['MANT_SOLICITANTE']
-      },
-      {
-        name: 'Docentes',
-        icon: 'fa fa-table nivel-1',
-        url: '/mantenimiento/docente',
-        permissions: ['MANT_DOCENTE']
+        name: 'Plan Académico',
+        icon: 'fa fa-upload nivel-1',
+        url: '/mantenimiento/plan-academico',
+        permissions: ['MANT_PLANACADEMICO']
       },
       {
         name: 'Cursos',
-        icon: 'fa fa-table nivel-1',
+        icon: 'fa fa-upload nivel-1',
         url: '/mantenimiento/cursos',
         permissions: ['MANT_CURSO']
       },
       {
+        name: 'Docentes',
+        icon: 'fa fa-upload nivel-1',
+        url: '/mantenimiento/docente',
+        permissions: ['MANT_DOCENTE']
+      },
+      {
+        name: 'Programación Académica',
+        icon: 'fa fa-upload nivel-1',
+        url: '/mantenimiento/programacion-academica',
+        permissions: ['MANT_PROGACEDEMICA']
+      },
+      {
         name: 'Horario',
-        icon: 'fa fa-table nivel-1',
+        icon: 'fa fa-upload nivel-1',
         url: '/mantenimiento/horario',
         permissions: ['MANT_HORARIO']
       },
       {
         name: 'Detalle Horario',
-        icon: 'fa fa-table nivel-1',
+        icon: 'fa fa-upload nivel-1',
         url: '/mantenimiento/detalle-horario',
         permissions: ['MANT_DETHORARIO']
+      }
+    ]
+  },{
+    name: 'Mantenimientos',
+    icon: 'fa fa-table nivel-0',
+    children: [
+      {
+        name: 'Solicitantes',
+        icon: 'fa fa-table nivel-1',
+        url: '/mantenimiento/solicitante',
+        permissions: ['MANT_SOLICITANTE']
       },
       {
-        name: 'Plan Académico',
+        name: 'Espacio Académico',
         icon: 'fa fa-table nivel-1',
-        url: '/mantenimiento/plan-academico',
-        permissions: ['MANT_PLANACADEMICO']
-      },
-      {
-        name: 'Programación Académica',
-        icon: 'fa fa-table nivel-1',
-        url: '/mantenimiento/programacion-academica',
-        permissions: ['MANT_PROGACEDEMICA']
-      },{
-      name: 'Espacio Académico',
-      icon: 'fa fa-table nivel-1',
-      url: '/mantenimiento/espacio-academico',
-      permissions: ['MANT_ESPACIO_ACADEMICO']
+        url: '/mantenimiento/espacio-academico',
+        permissions: ['MANT_ESPACIO_ACADEMICO']
       }
     ]
   },

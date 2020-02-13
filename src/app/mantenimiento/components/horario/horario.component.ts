@@ -120,10 +120,10 @@ export class HorarioComponent implements OnInit, AfterViewInit, OnDestroy, After
       {
         headerName: "Curso",
         field: "idCurso",
-        cellClass: 'ob-type-string-center',
+        cellClass: 'ob-type-string',
         filter: 'agTextColumnFilter',
         valueGetter: (params) => {
-          return !params.data ? '' : joinWords(DEFAULT_SEPARATOR, params.data.idCurso, params.data.descripcionCurso);
+          return !params.data ? '' : joinWords(DEFAULT_SEPARATOR, params.data.idCurso, params.data.descCurso);
         },
         filterParams: { newRowsAction: "keep" },
       },

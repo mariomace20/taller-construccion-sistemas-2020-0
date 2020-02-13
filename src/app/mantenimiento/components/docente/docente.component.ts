@@ -134,7 +134,7 @@ export class DocenteComponent implements OnInit, AfterViewInit, OnDestroy, After
       {
         headerName: "Apellidos",
         field: "apellidos",
-        cellClass: 'ob-type-string-center',
+        cellClass: 'ob-type-string',
         filter: 'agTextColumnFilter',
         filterParams: { newRowsAction: "keep" },
       },
